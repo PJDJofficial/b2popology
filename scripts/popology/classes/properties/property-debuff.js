@@ -2,6 +2,13 @@ import { Property } from './property.js'
 
 export class PropertyDebuff extends Property {
 
+  static DEBUFF_FORMATTED = {
+    "degrow" : "removes regrow modifier",
+    "decamo" : "removes camo modifer",
+    "damage" : "bloons takes extra damage",
+    "noImmunity" : "bloons lose damage type immunity"
+  };
+
   clone() {
     return new PropertyDebuff(this.key, structuredClone(this.val));
   }
@@ -13,26 +20,30 @@ export class PropertyDebuff extends Property {
 
     rootContainer.append(debuffHeader, debuffInfo);
 
-    debuffHeader.textContent = 'Applies the following debuffs to affected bloons:';
+    debuffInfo.classList.add('debuff-paragraph');
 
-    this.val.forEach((debuff) => {
+    debuffHeader.textContent = 'Applies the following debuffs on contact with bloons:';
+
+    for (let i = 0; i < this.val.length; i++) {
+      const debuff = this.val[i];
       debuffInfo.textContent += this.debuffToText(debuff);
-    });
+      if (i != this.val.length - 1) debuffInfo.textContent += '\n';
+    }
 
     return rootContainer;
   }
 
   debuffToText(debuff) {
-    let str = '';
+    let str = '* ';
     if (debuff.debuffTarget != null) str += `applies only to ${debuff.debuffTarget}: ` ;
-    if (debuff.debuffType != null) str += debuff.debuffType;
+    if (debuff.debuffType != null) str += PropertyDebuff.DEBUFF_FORMATTED[debuff.debuffType];
     if (debuff.debuffValue != null) str += ` (${debuff.debuffValue})`;
     if (debuff.debuffDuration != null) str += ` for ${debuff.debuffDuration}s`;
     if (debuff.cantStack != null) {
-      str += ' can\'t stack with: ';
+      str += ', can\'t stack with: ';
       debuff.cantStack.forEach(stack => str += stack);
     }
-    return str + ', ';
+    return str;
   }
 
   applyBuff(buff) {

@@ -5,7 +5,7 @@ import { PropertiesManager } from './properties/properties-manager.js';
 
 export class Upgrade {
 
-  constructor(path, name, cost, attacks, buffs, abilities, subtowers, externalBuffs, metadata) {
+  constructor(path, name, cost, attacks, buffs, abilities, subtowers, externalBuffs, endOfRound, metadata) {
     this.path = path;
     this.name = name;
     this.cost = cost;
@@ -14,6 +14,7 @@ export class Upgrade {
     this.abilities = abilities;
     this.subtowers = subtowers;
     this.externalBuffs = externalBuffs;
+    this.endOfRound = endOfRound;
     this.metadata = metadata
   }
 
@@ -21,12 +22,13 @@ export class Upgrade {
     const attacks = (data.attacks || []).map(Attack.fromData);
     const buffs = (data.buffs || []).map(Buff.fromData);
     const abilities = (data.abilities || []).map(Ability.fromData);
-    const ebs = [];
+    const externalBuffs = [];
 
-    if (data.externalBuffs == null);
-    else data.externalBuffs.forEach(eb => ebs.push(PropertiesManager.createProperty('externalBuff', eb)));
+    if (data.externalBuffs != null) {
+      data.externalBuffs.forEach(externalBuff => externalBuffs.push(PropertiesManager.createProperty('externalBuff', externalBuff)));
+    }
 
-    return new Upgrade(data.path, data.name, data.cost, attacks, buffs, abilities, data.subtowers, ebs, data.metadata);
+    return new Upgrade(data.path, data.name, data.cost, attacks, buffs, abilities, data.subtowers, externalBuffs, data.endOfRound, data.metadata);
   }
 
 }

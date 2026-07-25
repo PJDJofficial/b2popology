@@ -329,6 +329,7 @@
           "attacks" : [
             {
               "id" : "ground-zero",
+              "name" : "Ground Zero",
               "properties" : {
                 "damage" : 700,
                 "pierce" : {
@@ -373,6 +374,7 @@
           "attacks" : [
             {
               "id" : "ground-zero",
+              "name" : "Tsar Bomba",
               "properties" : {
                 "damage" : 3000,
                 "pierce" : {

@@ -110,6 +110,22 @@ export class Tower {
       externalBuffs.forEach(eb => ebContainer.append(eb.toHTML()));
     }
 
+    const endOfRound = this.getUpgrade(path).endOfRound;
+
+    if (endOfRound != null) {
+      const eorHeader = document.createElement('h3');
+      const eorContainer = document.createElement('div');
+
+      upgradesContainer.append(eorHeader, eorContainer);
+
+      eorHeader.textContent = 'End Of Round';
+
+      const eorp = document.createElement('p');
+      eorp.textContent = `Cash: ${endOfRound.cash}`;
+
+      eorContainer.append(eorp);
+    }
+
     return rootContainer;
   }
 

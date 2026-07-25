@@ -13,22 +13,79 @@
     {
       "path": "000",
       "name": "Base",
-      "cost": 500
+      "cost": 500,
+      "attacks" :
+      [
+        {
+          "id" : "dart",
+          "name" : "Dart",
+          "properties" : {
+            "damage" : 1,
+            "pierce" : 4,
+            "range" : 60,
+            "cooldown" : 1.0,
+            "damageType" : "sharp",
+            "notes" : [ "this attack is duplicated in both directions" ]
+          }
+        }
+      ]
     },
     {
       "path": "100",
       "name": "Faster Shooting",
-      "cost": 350
+      "cost": 350,
+      "buffs" : [
+        {
+          "type" : "cooldown",
+          "operation" : "mul",
+          "value" : 0.75,
+          "affectedAttacks" : [ "dart", "grape", "cannonball" ]
+        },
+        {
+          "type" : "cooldown",
+          "operation" : "set",
+          "value" : 20,
+          "affectedAbilities" : [ "takedown", "zomg-takedown" ]
+        }
+      ]
     },
     {
       "path": "200",
       "name": "Double Shot",
-      "cost": 550
+      "cost": 550,
+      "buffs" : [
+        {
+          "type" : "projectiles",
+          "operation" : "add",
+          "value" : 1,
+          "affectedAttacks" : [ "dart" ]
+        },
+        {
+          "type" : "projectiles",
+          "operation" : "add",
+          "value" : 5,
+          "affectedAttacks" : [ "grape" ]
+        }
+      ]
     },
     {
       "path": "300",
       "name": "Destroyer",
-      "cost": 2200
+      "cost": 2200,
+      "buffs" : [
+        {
+          "type" : "cooldown",
+          "operation" : "mul",
+          "value" : 0.2,
+          "affectedAttacks" : [ "dart" ]
+        },
+        {
+          "type" : "cooldown",
+          "operation" : "mul",
+          "value" : 0.3333333,
+          "affectedAttacks" : [ "grape" ]
+        }
+      ]
     },
     {
       "path": "400",
@@ -43,52 +100,303 @@
     {
       "path": "010",
       "name": "Grape Shot",
-      "cost": 550
+      "cost": 550,
+      "attacks" :
+      [
+        {
+          "id" : "grape",
+          "name" : "Grape",
+          "properties" : {
+            "damage" : 1,
+            "projectiles" : [5, 80],
+            "pierce" : 1,
+            "range" : 60,
+            "cooldown" : 1.3,
+            "damageType" : "sharp",
+            "notes" : [ "this attack is duplicated in both directions" ]
+          }
+        }
+      ]
+
     },
     {
       "path": "020",
       "name": "Hot Shot",
-      "cost": 500
+      "cost": 500,
+      "buffs" : [
+        {
+          "type" : "damageType",
+          "operation" : "set",
+          "value" : "fire",
+          "affectedAttacks" : [ "grape" ]
+        },
+        {
+          "type": "appendDoT",
+          "value": {
+            "name" : "burn",
+            "properties" : {
+            "damage" : 1,
+            "damageType" : "fire",
+            "tickDuration" : 1.5,
+            "totalDuration" : 3.1
+            }
+          },
+          "affectedAttacks" : [ "grape" ]
+        }
+      ]
+
     },
     {
       "path": "030",
       "name": "Cannon Ship",
-      "cost": 900
+      "cost": 900,
+      "attacks" : [
+        {
+          "id" : "cannonball",
+          "name" : "Cannonball",
+          "properties" : {
+            "cooldown" : 1.2,
+            "notes" : [ "this attack is duplicated in both directions" ],
+            "summonAttack" : [
+              {
+                "attackId" : "cannonball-explosion",
+                "type" : [ "onContact" ]
+              },
+              {
+                "attackId" : "cannonball-frags",
+                "type" : [ "onContact" ]
+              }
+            ],
+            "embeddedAttacks" : [
+              {
+                "id" : "cannonball-explosion",
+                "properties" : {
+                  "damage" : 1,
+                  "pierce" : 25,
+                  "blastRadius" : 40,
+                  "damageType" : "explosion",
+                  "attackType" : "explosion"
+                }
+              },
+              {
+                "id" : "cannonball-frags",
+                "properties" : {
+                  "damage" : 1,
+                  "projectiles" : 8,
+                  "impactPierce" : 1,
+                  "damageType" : "sharp",
+                  "attackType" : "frags"
+                }
+              }
+            ]
+          }
+        }
+      ]
     },
     {
       "path": "040",
       "name": "Monkey Pirates",
-      "cost": 5250
+      "cost": 5250,
+      "buffs" : [
+        {
+          "type" : "projectiles",
+          "operation" : "add",
+          "value" : 2,
+          "affectedAttacks" : [ "cannonball" ]
+        },
+        {
+          "type" : "cooldown",
+          "operation" : "set",
+          "value" : 1.3,
+          "affectedAttacks" : [ "cannonball" ]
+        },
+        {
+          "type" : "damage",
+          "operation" : "add",
+          "value" : 1,
+          "affectedAttacks" : [ "cannonball-explosion" ]
+        }
+      ],
+      "abilities" : [
+        {
+          "id" : "takedown",
+          "name" : "Takedown",
+          "properties" : {
+            "cooldown" : 30,
+            "range" : {
+              "attribute" : "infinite"
+            },
+            "desc" : [
+              "targets the strongest blimp (exlcuding ZOMG or BAD), immediately removing it",
+              "Hooking a MOAB earns 400$, BFB 800$, DDT 1200$"
+            ]
+          }
+        }
+      ]
     },
     {
       "path": "050",
       "name": "Pirate Lord",
-      "cost": 21000
+      "cost": 21000,
+      "abilities" : [
+        {
+          "id" : "zomg-takedown",
+          "name" : "ZOMG Takedown",
+          "overwrites" : [ "takedown" ],
+          "properties" : {
+            "cooldown" : 30,
+            "range" : {
+              "attribute" : "infinite"
+            },
+            "desc" : [
+              "3 hooks targeting the strongest blimp (exlcuding BAD), immediately removing it",
+              "ZOMGs use 2 hooks",
+              "Hooking a MOAB earns 400$, BFB 800$, ZOMG or DDT 1200$"
+            ]
+          }
+        }
+      ]
     },
     {
       "path": "001",
       "name": "Long Range",
-      "cost": 300
+      "cost": 300,
+      "buffs" : [
+        {
+          "type" : "pierce",
+          "operation" : "add",
+          "value" : 1,
+          "affectedAttacks" : [ "dart", "grape" ]
+        },
+        {
+          "type" : "pierce",
+          "operation" : "add",
+          "value" : 7,
+          "affectedAttacks" : [ "cannonball-explosion" ]
+        },
+        {
+          "type" : "pierce",
+          "operation" : "add",
+          "value" : 7,
+          "affectedAttacks" : [ "cannonball-explosion" ]
+        }
+      ]
     },
     {
       "path": "002",
       "name": "Crow's Nest",
-      "cost": 400
+      "cost": 400,
+      "buffs" : [
+        {
+          "type" : "camo",
+          "operation" : "set",
+          "value" : true,
+          "affectedAttacks" : [ "all" ]
+        },
+        {
+          "type" : "bonusDamage",
+          "operation" : "add",
+          "value" : {
+            "camo" : 1
+          },
+          "affectedAttacks" : [ "all" ]
+        }
+      ]
     },
     {
       "path": "003",
       "name": "Merchantman",
-      "cost": 1500
+      "cost": 2000,
+      "endOfRound" : {
+        "cash" : 400
+      }
     },
     {
       "path": "004",
       "name": "Favored Trades",
-      "cost": 5700
+      "cost": 5300,
+      "endOfRound" : {
+        "cash" : 1200
+      },
+      "buffs": [
+        {
+          "type" : "cooldown",
+          "operation" : "mul",
+          "value" : 0.5,
+          "affectedAttacks" : [ "dart" ]
+        },
+        {
+          "type" : "cooldown",
+          "operation" : "set",
+          "value" : 0.75,
+          "affectedAttacks" : [ "grape" ]
+        }
+      ],
+      "externalBuffs" : [
+        {
+          "targets" : [ "all" ],
+          "buffs" : [
+            {
+              "type" : "sellback",
+              "operation" : "add",
+              "value" : 0.1
+            }
+          ]
+        }
+      ]
     },
     {
       "path": "005",
       "name": "Trade Empire",
-      "cost": 19000
+      "cost": 19000,
+      "endOfRound" : {
+        "cash" : 3000
+      },
+      "buffs": [
+        {
+          "type" : "damage",
+          "operation" : "add",
+          "value" : 1,
+          "affectedAttacks" : [ "all" ]
+        },
+        {
+          "type" : "bonusDamage",
+          "operation" : "add",
+          "value" : {
+            "ceram" : 1,
+            "moab" : 1
+          },
+          "affectedAttacks" : [ "all" ]
+        }
+      ],
+      "externalBuffs" : [
+        {
+          "targets" : [ "merchantman", "favored-trades" ],
+          "buffs" : [
+            {
+              "type" : "damage",
+              "operation" : "add",
+              "value" : 1,
+              "affectedAttacks" : [ "all" ]
+            },
+            {
+              "type" : "bonusDamage",
+              "operation" : "add",
+              "value" : {
+                "ceram" : 1,
+                "moab" : 1
+              },
+              "affectedAttacks" : [ "all" ]
+            },
+            {
+              "type" : "endOfRoundCash",
+              "operation" : "add",
+              "value" : "+10% * n, where n is the number of buffed towers",
+              "affectedAttacks" : [ "all" ]
+            }
+          ]
+        }
+      ]
     }
   ]
 }

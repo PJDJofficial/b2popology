@@ -37,22 +37,15 @@
           "type": "pierce",
           "operation": "add",
           "value": 1,
-          "affectedAttacks": [
-            "all",
-            "EX_masterbolt",
-            "EX_spikeball",
-            "EX_juggernaut",
-            "EX_ultrajugg",
-            "EX_juggernauts"
-          ]
+          "affectedAttacks": [ "dart" , "bolt" ],
+          "affectedPaths" : [ "all", "EX_005" ]
         },
         {
           "type": "pierce",
           "operation": "add",
           "value": 6,
-          "affectedAttacks": [
-            "masterbolt"
-          ]
+          "affectedAttacks": [ "bolt" ],
+          "affectedPaths" : [ "005" ]
         }
       ]
     },
@@ -65,22 +58,15 @@
           "type": "pierce",
           "operation": "add",
           "value": 3,
-          "affectedAttacks": [
-            "all",
-            "EX_masterbolt",
-            "EX_spikeball",
-            "EX_juggernaut",
-            "EX_ultrajugg",
-            "EX_juggernauts"
-          ]
+          "affectedAttacks": [ "dart" , "bolt" ],
+          "affectedPaths" : [ "all", "EX_005" ]
         },
         {
           "type": "pierce",
           "operation": "add",
           "value": 8,
-          "affectedAttacks": [
-            "masterbolt"
-          ]
+          "affectedAttacks": [ "bolt" ],
+          "affectedPaths" : [ "005" ]
         }
       ]
     },
@@ -331,12 +317,7 @@
           "type": "range",
           "operation": "add",
           "value": 8,
-          "affectedAttacks": [
-            "all",
-            "EX_bolt",
-            "EX_sharpbolt",
-            "EX_masterbolt"
-          ]
+          "affectedAttacks": [ "all", "EX_bolt" ]
         }
       ]
     },
@@ -349,20 +330,13 @@
           "type": "range",
           "operation": "add",
           "value": 8,
-          "affectedAttacks": [
-            "all",
-            "EX_bolt",
-            "EX_sharpbolt",
-            "EX_masterbolt"
-          ]
+          "affectedAttacks": [ "all", "EX_bolt" ]
         },
         {
           "type": "camo",
           "operation": "set",
           "value": true,
-          "affectedAttacks": [
-            "all"
-          ]
+          "affectedAttacks": [ "all" ]
         }
       ]
     },
@@ -391,29 +365,30 @@
     {
       "path": "004",
       "name": "Sharp Shooter",
-      "cost": 2300,
-      "attacks": [
+      "buffs" : [
         {
-          "id": "sharpbolt",
-          "name": "Bolt",
-          "overwrites": [
-            "bolt"
-          ],
-          "properties": {
-            "damage": 6,
-            "pierce": 7,
-            "range": 56,
-            "cooldown": 0.75,
-            "damageType": "sharp",
-            "camo": true,
-            "crit": [
-              7,
-              50
-            ],
-            "notes" : [
-              "first attack always crits"
-            ]
-          }
+          "type": "damage",
+          "operation": "add",
+          "value": 3,
+          "affectedAttacks" : [ "bolt" ]
+        },
+        {
+          "type": "cooldown",
+          "operation": "set",
+          "value": 0.75,
+          "affectedAttacks" : [ "bolt" ]
+        },
+        {
+          "type": "crit",
+          "operation": "set",
+          "value": [7, 50],
+          "affectedAttacks" : [ "bolt" ]
+        },
+        {
+          "type": "notes",
+          "operation": "add",
+          "value": [ "first attack always crits" ],
+          "affectedAttacks" : [ "bolt" ]
         }
       ]
     },
@@ -421,25 +396,43 @@
       "path": "005",
       "name": "Crossbow Master",
       "cost": 27000,
-      "attacks": [
+      "buffs" :
+      [
         {
-          "id": "masterbolt",
-          "name": "Bolt",
-          "overwrites": [
-            "sharpbolt"
-          ],
-          "properties": {
-            "damage": 9,
-            "pierce": 13,
-            "range": 74,
-            "cooldown": 0.13,
-            "damageType": "normal",
-            "camo": true,
-            "crit": [
-              5,
-              75
-            ]
-          }
+          "type": "damage",
+          "operation": "add",
+          "value": 3,
+          "affectedAttacks" : [ "bolt" ]
+        },
+        {
+          "type": "pierce",
+          "operation": "add",
+          "value": 6,
+          "affectedAttacks" : [ "bolt" ]
+        },
+        {
+          "type": "range",
+          "operation": "add",
+          "value": 20,
+          "affectedAttacks" : [ "bolt" ]
+        },
+        {
+          "type": "cooldown",
+          "operation": "set",
+          "value": 0.13,
+          "affectedAttacks" : [ "bolt" ]
+        },
+        {
+          "type": "damageType",
+          "operation": "set",
+          "value": "normal",
+          "affectedAttacks" : [ "bolt" ]
+        },
+        {
+          "type": "crit",
+          "operation": "add",
+          "value": 25,
+          "affectedAttacks" : [ "bolt" ]
         }
       ]
     }

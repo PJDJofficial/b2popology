@@ -72,6 +72,10 @@ export class Attack {
           propertyToBuff = PropertiesManager.createProperty(buff.type, {});
           attack.properties.push(propertyToBuff);
         }
+        if (buff.operation == 'add' && buff.type == 'projectiles') {
+          propertyToBuff = PropertiesManager.createProperty(buff.type, 1);
+          attack.properties.push(propertyToBuff);
+        }
         if (
           (buff.operation == 'append' && buff.type == 'summonAttack') ||
           buff.operation == 'add' && buff.type == 'notes'
@@ -83,11 +87,11 @@ export class Attack {
       if (propertyToBuff != null) propertyToBuff.applyBuff(buff);
     }
     // damage buffs get applied to crits too
-    if (buff.type == 'damage' && this.properties.find(property => property.key == 'crit') != null) {
+    /*if (buff.type == 'damage' && this.properties.find(property => property.key == 'crit') != null) {
       const newBuff = buff.clone();
       newBuff.type = 'crit';
       return attack.buffedBy(newBuff);
-    }
+    }*/
     return attack;
   }
 
