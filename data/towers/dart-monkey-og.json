@@ -1,0 +1,440 @@
+{
+  "id": "dartMonkey",
+  "name": "Dart Monkey",
+  "category" : "primary",
+  "properties": {
+    "unlockCost": 0,
+    "size": [
+      6
+    ],
+    "placement": 0
+  },
+  "upgrades": [
+    {
+      "path": "000",
+      "name": "Base",
+      "cost": 200,
+      "attacks": [
+        {
+          "id": "dart",
+          "name": "Dart",
+          "properties": {
+            "damage": 1,
+            "pierce": 2,
+            "range": 32,
+            "cooldown": 0.95,
+            "damageType": "sharp"
+          }
+        }
+      ]
+    },
+    {
+      "path": "100",
+      "name": "Sharp Shots",
+      "cost": 100,
+      "buffs": [
+        {
+          "type": "pierce",
+          "operation": "add",
+          "value": 1,
+          "affectedAttacks": [ "dart" , "bolt" ],
+          "affectedPaths" : [ "all", "EX_005" ]
+        },
+        {
+          "type": "pierce",
+          "operation": "add",
+          "value": 6,
+          "affectedAttacks": [ "bolt" ],
+          "affectedPaths" : [ "005" ]
+        }
+      ]
+    },
+    {
+      "path": "200",
+      "name": "Razor Sharp Shots",
+      "cost": 250,
+      "buffs": [
+        {
+          "type": "pierce",
+          "operation": "add",
+          "value": 3,
+          "affectedAttacks": [ "dart" , "bolt" ],
+          "affectedPaths" : [ "all", "EX_005" ]
+        },
+        {
+          "type": "pierce",
+          "operation": "add",
+          "value": 8,
+          "affectedAttacks": [ "bolt" ],
+          "affectedPaths" : [ "005" ]
+        }
+      ]
+    },
+    {
+      "path": "300",
+      "name": "Spike-o-pult",
+      "cost": 450,
+      "attacks": [
+        {
+          "id": "spikeball",
+          "name": "Spikeball",
+          "overwrites": [
+            "dart"
+          ],
+          "properties": {
+            "damage": 1,
+            "pierce": 30,
+            "range": 37,
+            "cooldown": 1.15,
+            "damageType": "shatter",
+            "bonusDamage": {
+              "ceram": 1
+            },
+            "notes": [
+              "can bounce off walls and rehit bloons after bounce"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "path": "400",
+      "name": "Juggernaut",
+      "cost": 1800,
+      "attacks": [
+        {
+          "id": "juggernaut",
+          "name": "Juggernaut",
+          "overwrites": [
+            "spikeball"
+          ],
+          "properties": {
+            "damage": 2,
+            "pierce": 60,
+            "range": 37,
+            "cooldown": 1.0,
+            "damageType": "normal",
+            "bonusDamage": {
+              "ceram": 4
+            },
+            "notes": [
+              "can bounce off walls and rehit bloons after bounce"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "path": "500",
+      "name": "Ultra-Juggernaut",
+      "cost": 13500,
+      "attacks": [
+        {
+          "id": "ultrajugg",
+          "name": "Ultrajugg",
+          "overwrites": [
+            "juggernaut"
+          ],
+          "properties": {
+            "damage": 5,
+            "pierce": 200,
+            "range": 37,
+            "cooldown": 1.0,
+            "damageType": "normal",
+            "bonusDamage": {
+              "ceram": 16,
+              "fort": 5,
+              "lead": 25
+            },
+            "notes": [
+              "can bounce off walls and rehit bloons after bounce"
+            ],
+            "summonAttack" : [
+              {
+                "type" : [ "onHalfPierce", "onPierce", "onExpiry" ],
+                "attackId" : "juggernauts"
+              }
+            ],
+            "embeddedAttacks" : [
+              {
+              "id": "juggernauts",
+              "properties": {
+                "damage": 1,
+                "pierce": 100,
+                "damageType": "normal",
+                "attackType" : "mini juggernauts",
+                "projectiles": 6,
+                "bonusDamage": {
+                  "ceram": 2,
+                  "fort": 2,
+                  "lead": 5
+                },
+                "notes": [
+                  "can bounce off walls and rehit bloons after bounce"
+                ]
+              }
+            }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "path": "010",
+      "name": "Quick Shot",
+      "cost": 100,
+      "buffs": [
+        {
+          "type": "cooldown",
+          "operation": "mul",
+          "value": 0.85,
+          "affectedAttacks": [
+            "all"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "020",
+      "name": "Very Quick Shots",
+      "cost": 100,
+      "buffs": [
+        {
+          "type": "cooldown",
+          "operation": "mul",
+          "value": 0.78,
+          "affectedAttacks": [
+            "all"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "030",
+      "name": "Triple Shot",
+      "cost": 350,
+      "buffs": [
+        {
+          "type": "projectiles",
+          "operation": "set",
+          "value": [3, 30],
+          "affectedAttacks": [
+            "all",
+            "EX_superfan-dart"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "040",
+      "name": "Super Monkey Fan Club",
+      "cost": 9000,
+      "buffs": [
+        {
+          "type": "damage",
+          "operation": "add",
+          "value": 2,
+          "affectedAttacks": [
+            "all"
+          ]
+        },
+        {
+          "type": "cooldown",
+          "operation": "mul",
+          "value": 0.75,
+          "affectedAttacks": [
+            "all"
+          ]
+        }
+      ],
+      "abilities": [
+        {
+          "id": "fan-club",
+          "name": "Super Monkey Fan Club",
+          "properties": {
+            "cooldown": 50,
+            "duration": 12,
+            "desc": [
+              "transforms the 10 nearest untransformed dart monkeys within 50 radius (up to 2-4-2) into superfans",
+              "if limit isn't reached, also transforms newly placed dart monkeys until reached",
+              "if sold, monkeys remain transformed",
+              "if transformed darts are upgraded to a non-2-5-2 dart monkey, they do not acquire those upgrades until end of duration",
+              "superfans inherit crosspathing benefits"
+            ]
+          }
+        }
+      ],
+      "subtowers": [
+        "superFan"
+      ]
+    },
+    {
+      "path": "050",
+      "name": "Plasma Monkey Fan Club",
+      "cost": 45000,
+	  "subtowers" :
+	  [
+        "plasmaFan",
+        "EX_superFan"
+	  ],
+      "buffs": [
+        {
+          "type": "damage",
+          "operation": "add",
+          "value": 3,
+          "affectedAttacks": [
+            "all"
+          ]
+        }
+      ],
+      "abilities": [
+        {
+          "id": "plasma-fan-club",
+          "name": "Plasma Monkey Fan Club",
+          "overwrites": [
+            "fan-club"
+          ],
+          "properties": {
+            "cooldown": 50,
+            "duration": 15,
+            "desc": [
+              "transforms the 20 nearest untransformed dart monkeys within 50 radius (up to 2-4-2) into superfans",
+              "if limit isn't reached, also transforms newly placed dart monkeys until reached",
+              "if sold, monkeys remain transformed",
+              "if transformed darts are upgraded to a non-2-5-2 dart monkey, they do not acquire those upgrades until end of duration",
+              "superfans inherit crosspathing benefits"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "path": "001",
+      "name": "Long Range Darts",
+      "cost": 90,
+      "buffs": [
+        {
+          "type": "range",
+          "operation": "add",
+          "value": 8,
+          "affectedAttacks": [ "all", "EX_bolt" ]
+        }
+      ]
+    },
+    {
+      "path": "002",
+      "name": "Enhanced Eyesight",
+      "cost": 200,
+      "buffs": [
+        {
+          "type": "range",
+          "operation": "add",
+          "value": 8,
+          "affectedAttacks": [ "all", "EX_bolt" ]
+        },
+        {
+          "type": "camo",
+          "operation": "set",
+          "value": true,
+          "affectedAttacks": [ "all" ]
+        }
+      ]
+    },
+    {
+      "path": "003",
+      "name": "Crossbow",
+      "cost": 600,
+      "attacks": [
+        {
+          "id": "bolt",
+          "name": "Bolt",
+          "overwrites": [
+            "dart"
+          ],
+          "properties": {
+            "damage": 3,
+            "pierce": 7,
+            "range": 56,
+            "cooldown": 0.95,
+            "damageType": "sharp",
+            "camo": true
+          }
+        }
+      ]
+    },
+    {
+      "path": "004",
+      "name": "Sharp Shooter",
+      "buffs" : [
+        {
+          "type": "damage",
+          "operation": "add",
+          "value": 3,
+          "affectedAttacks" : [ "bolt" ]
+        },
+        {
+          "type": "cooldown",
+          "operation": "set",
+          "value": 0.75,
+          "affectedAttacks" : [ "bolt" ]
+        },
+        {
+          "type": "crit",
+          "operation": "set",
+          "value": [7, 50],
+          "affectedAttacks" : [ "bolt" ]
+        },
+        {
+          "type": "notes",
+          "operation": "add",
+          "value": [ "first attack always crits" ],
+          "affectedAttacks" : [ "bolt" ]
+        }
+      ]
+    },
+    {
+      "path": "005",
+      "name": "Crossbow Master",
+      "cost": 27000,
+      "buffs" :
+      [
+        {
+          "type": "damage",
+          "operation": "add",
+          "value": 3,
+          "affectedAttacks" : [ "bolt" ]
+        },
+        {
+          "type": "pierce",
+          "operation": "add",
+          "value": 6,
+          "affectedAttacks" : [ "bolt" ]
+        },
+        {
+          "type": "range",
+          "operation": "add",
+          "value": 20,
+          "affectedAttacks" : [ "bolt" ]
+        },
+        {
+          "type": "cooldown",
+          "operation": "set",
+          "value": 0.13,
+          "affectedAttacks" : [ "bolt" ]
+        },
+        {
+          "type": "damageType",
+          "operation": "set",
+          "value": "normal",
+          "affectedAttacks" : [ "bolt" ]
+        },
+        {
+          "type": "crit",
+          "operation": "add",
+          "value": 25,
+          "affectedAttacks" : [ "bolt" ]
+        }
+      ]
+    }
+  ]
+}

@@ -13,47 +13,304 @@
     {
       "path": "000",
       "name": "Base",
-      "cost": 300
+      "cost": 300,
+      "attacks" : [
+        {
+          "id" : "magic-bolt",
+          "name" : "Magic Bolt",
+          "properties" : {
+            "damage" : 1,
+            "pierce" : 3,
+            "range" : 40,
+            "cooldown" : 1.1,
+            "damageType" : "energy"
+          }
+        }
+      ]
     },
     {
       "path": "100",
       "name": "Guided Magic",
-      "cost": 100
+      "cost": 100,
+      "buffs" : [
+        {
+          "type" : "ignoreObstacle",
+          "operation" : "set",
+          "value" : true,
+          "affectedAttacks" : [ "magic-bolt" ]
+        },
+        {
+          "type" : "notes",
+          "operation" : "add",
+          "value" : "wall of fire can be placed behind walls, and receives manual targeting on any location within range",
+          "affectedAttacks" : [ "wof" ]
+        }
+      ]
     },
     {
       "path": "200",
       "name": "Arcane Blast",
-      "cost": 250
+      "cost": 250,
+      "buffs" : [
+        {
+          "type" : "damage",
+          "operation" : "add",
+          "value" : 1,
+          "affectedAttacks" : [ "magic-bolt", "fireball-explosion" ]
+        }
+      ]
     },
     {
       "path": "300",
       "name": "Arcane Mastery",
-      "cost": 1300
+      "cost": 1300,
+      "buffs" : [
+        {
+          "type" : "damage",
+          "operation" : "add",
+          "value" : 1,
+          "affectedAttacks" : [ "magic-bolt" ]
+        },
+        {
+          "type" : "pierce",
+          "operation" : "add",
+          "value" : 4,
+          "affectedAttacks" : [ "magic-bolt" ]
+        },
+        {
+          "type" : "range",
+          "operation" : "add",
+          "value" : 20,
+          "affectedAttacks" : [ "magic-bolt" ]
+        },
+        {
+          "type" : "cooldown",
+          "operation" : "mul",
+          "value" : 0.5,
+          "affectedAttacks" : [ "magic-bolt" ]
+        },
+        {
+          "type" : "damageType",
+          "operation" : "set",
+          "value" : "plasma",
+          "affectedAttacks" : [ "magic-bolt" ]
+        }
+      ]
     },
     {
       "path": "400",
       "name": "Arcane Spike",
-      "cost": 9000
+      "cost": 9000,
+      "buffs" : [
+        {
+          "type" : "damage",
+          "operation" : "add",
+          "value" : 5,
+          "affectedAttacks" : [ "magic-bolt" ]
+        },
+        {
+          "type" : "bonusDamage",
+          "operation" : "add",
+          "value" : {
+            "moab" : 10,
+            "lead" : 4
+          },
+          "affectedAttacks" : [ "magic-bolt" ]
+        },
+        {
+          "type" : "cooldown",
+          "operation" : "mul",
+          "value" : 0.5,
+          "affectedAttacks" : [ "magic-bolt" ]
+        }
+      ]
     },
     {
       "path": "500",
       "name": "Archmage",
-      "cost": 32000
+      "cost": 32000,
+      "attacks" : [
+        {
+          "id" : "shimmer",
+          "name" : "Shimmer",
+          "properties" : {
+            "pierce" : 200,
+            "range" : {
+              "value" : 70,
+              "attribute" : "aoe"
+            },
+            "cooldown" : 1.25,
+            "camo" : true,
+            "ignoreObstacle" : true,
+            "debuff" : [
+              {
+                "debuffType" : "decamo"
+              }
+            ]
+          }
+        },
+        {
+          "id" : "flame",
+          "name" : "Flame",
+          "properties" : {
+            "damage" : 1,
+            "bonusDamage" : {
+              "ceram" : 1,
+              "moab" : 1
+            },
+            "pierce" : 4,
+            "range" : 70,
+            "cooldown" : 0.05,
+            "damageType" : "fire",
+            "ignoreObstacle" : true,
+            "dots" : [
+              {
+                "name" : "burn",
+                "properties" : {
+                  "damage" : 1,
+                  "damageType" : "fire",
+                  "tickDuration" : 1.5,
+                  "totalDuration" : 3.1
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "buffs" : [
+        {
+          "type" : "damage",
+          "operation" : "add",
+          "value" : 2,
+          "affectedAttacks" : [ "magic-bolt" ]
+        },
+        {
+          "type" : "damage",
+          "operation" : "add",
+          "value" : 7,
+          "affectedAttacks" : [ "fireball-explosion" ]
+        },
+        {
+          "type" : "bonusDamage",
+          "operation" : "add",
+          "value" : {
+            "moab" : 15,
+            "lead" : 4
+          },
+          "affectedAttacks" : [ "magic-bolt" ]
+        },
+        {
+          "type" : "bonusDamage",
+          "operation" : "add",
+          "value" : {
+            "moab" : 9
+          },
+          "affectedAttacks" : [ "fireball-explosion" ]
+        },
+        {
+          "type" : "pierce",
+          "operation" : "add",
+          "value" : 6,
+          "affectedAttacks" : [ "magic-bolt" ]
+        },
+        {
+          "type" : "cooldown",
+          "operation" : "mul",
+          "value" : 0.5,
+          "affectedAttacks" : [ "magic-bolt", "fireball" ]
+        }
+      ]
     },
     {
       "path": "010",
       "name": "Fireball",
-      "cost": 350
+      "cost": 350,
+      "attacks" : [
+        {
+          "id" : "fireball",
+          "properties" : {
+            "cooldown" : 2.6,
+            "summonAttack" : [
+              {
+                "attackId" : "fireball-explosion",
+                "type" : [ "onContact" ]
+              }
+            ],
+            "embeddedAttacks" : [
+              {
+                "id" : "fireball-explosion",
+                "properties" : {
+                  "damage" : 2,
+                  "pierce" : 15,
+                  "blastRadius" : 20,
+                  "damageType" : "explosion",
+                  "attackType" : "explosion"
+                }
+              }
+            ]
+          }
+        }
+      ]
     },
     {
       "path": "020",
       "name": "Wall of Fire",
-      "cost": 1000
+      "cost": 1000,
+      "attacks" : [
+        {
+          "id" : "wof",
+          "name" : "Wall of Fire",
+          "properties" : {
+            "cooldown" : 5.5,
+            "initialCooldown" : 1.0,
+            "summonAttack" : [
+              {
+                "attackId" : "wof-track-item",
+                "type" : [ "track" ]
+              }
+            ],
+            "embeddedAttacks" : [
+              {
+                "id" : "wof-track-item",
+                "properties" : {
+                  "damage" : 2,
+                  "pierce" : 15,
+                  "range" : {
+                    "value" : 15,
+                    "attribute" : "aoe"
+                  },
+                  "cooldown" : 0.15,
+                  "damageType" : "fire",
+                  "duration" : 4.5,
+                  "lifetimePierce" : 100,
+                  "attackType" : "wall of fire"
+                }
+              }
+            ]
+          }
+        }
+      ]
     },
     {
       "path": "030",
       "name": "Dragon's Breath",
-      "cost": 3000
+      "cost": 3000,
+      "attacks" : [
+        {
+          "id" : "flame",
+          "name" : "Flame",
+          "properties" : {
+            "damage" : 1,
+            "bonusDamage" : {
+              "ceram" : 1
+            },
+            "pierce" : 4,
+            "range" : 50,
+            "cooldown" : 0.1
+
+          }
+        }
+      ]
     },
     {
       "path": "040",
@@ -68,7 +325,21 @@
     {
       "path": "001",
       "name": "Intense Magic",
-      "cost": 300
+      "cost": 300,
+      "buffs" : [
+        {
+          "type" : "pierce",
+          "operation" : "add",
+          "value" : 5,
+          "affectedAttacks" : [ "fireball-explosion", "wof-track-item" ]
+        },
+        {
+          "type" : "ignoreObstacle",
+          "operation" : "set",
+          "value" : true,
+          "affectedAttacks" : [ "fireball" ]
+        }
+      ]
     },
     {
       "path": "002",
