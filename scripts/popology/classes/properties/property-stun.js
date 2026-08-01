@@ -1,6 +1,6 @@
 import { Property } from './property.js';
 import { PropertiesContainer } from '../../ui/properties-container.js';
-import { PropertyIconed } from './property-iconed.js';
+import { PropertyIconedUnkeyed } from './property-iconed-unkeyed.js';
 import { PropertyUnkeyed } from './property-unkeyed.js';
 
 export class PropertyStun extends Property {
@@ -13,7 +13,7 @@ export class PropertyStun extends Property {
     const properties = [];
 
     Object.keys(this.val.stunDurations).forEach((key) => {
-      const iconedProperty = new PropertyIconed(key, `${parseFloat(this.val.stunDurations[key]).toFixed(1)}s`);
+      const iconedProperty = new PropertyIconedUnkeyed(key, `${parseFloat(this.val.stunDurations[key]).toFixed(1)}s`);
       properties.push(iconedProperty);
     });
 

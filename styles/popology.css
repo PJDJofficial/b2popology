@@ -1,6 +1,6 @@
 :root {
-  --background-primary: #DDDDDD;
-  --background-secondary: #FFFFFF;
+  --background-primary: #E4E4E4;
+  --background-secondary: #F2F2F2;
   --background-thirdary: #EEEEEE;
   --background-red: #DDAAAA;
   --background-purple: #CC99CC;
@@ -28,7 +28,7 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background-primary: #333333;
+    --background-primary: #464646;
     --background-secondary: #666666;
     --background-thirdary: #555555;
     --background-purple: #664B66;
@@ -66,6 +66,7 @@ h1 {
   font-size: 40px;
   font-family: Luckiest Guy;
   font-weight: bold;
+  margin-top: 6px;
 }
 
 h2 {
@@ -139,7 +140,7 @@ h5 {
   justify-content: center;
   text-align: center;
   background-color: var(--background-primary);
-  padding: 16px 0 16px 0;
+  padding: 6px 0 2px 0;
   margin: 4px 16px 16px 16px;
   border-radius: 16px;
 }
@@ -151,7 +152,7 @@ h5 {
   }
 }
 
-.upgrades-container {
+.whole-tower-container {
   justify-content: center;
   text-align: center;
   background-color: var(--background-primary);
@@ -226,13 +227,19 @@ h5 {
 }
 
 .property-iconed-container img {
-  height: 40px;
+  height: 36px;
 }
 
-.property-iconed-container div {
-  background-color: var(--background-secondary);
-  border-radius: 8px;
-  padding: 4px 8px 4px 8px;
+.property-iconed-top {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.property-iconed-bottom {
+  background-color: var(--background-primary);
+  border-radius: 4px;
 }
 
 .property-iconed-container p {
@@ -332,4 +339,11 @@ h5 {
   padding: 2px 0 2px 6px;
   border-radius: 4px;
   text-align: left;
+}
+
+.view-button {
+  width: 224px;
+  background-color: var(--background-secondary);
+  font-size: 20px;
+  margin: 0 2px 2px 2px;
 }

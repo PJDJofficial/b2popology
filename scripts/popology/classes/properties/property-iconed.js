@@ -4,6 +4,13 @@ export class PropertyIconed extends Property {
 
   static PLACEMENT = ["Land", "Water", "Amphibious"];
 
+  static KEY_NAMES = {
+    "placement" : "Placable on",
+    "unlockCost" : "Unlock Price",
+    "cost" : "Total Cost",
+    "size" : "Size"
+  }
+
   clone() {
     return new PropertyIconed(this.key, this.val);
   }
@@ -17,19 +24,29 @@ export class PropertyIconed extends Property {
     if (!this.key || this.val == null) return;
 
     const mainContainer = document.createElement('div');
-    const p = document.createElement('p');
-    const pContainer =document.createElement('div');
+    const topContainer = document.createElement('div');
+    const botContainer =document.createElement('div');
+    const p1 = document.createElement('p');
+    const p2 = document.createElement('p');
     const icon = document.createElement('img');
 
-    pContainer.append(p);
-    mainContainer.append(icon, pContainer);
+    mainContainer.append(topContainer, botContainer);
+    topContainer.append(icon, p1);
+    botContainer.append(p2);
 
     mainContainer.className = 'property-iconed-container';
+    topContainer.classList.add('property-iconed-top');
+    botContainer.classList.add('property-iconed-bottom');
 
     icon.src = '/media/property-icons/' + toFileName(this.key) + '.png';
-    p.textContent = this.formattedValue();
+    p1.textContent = this.formattedKey();
+    p2.textContent = this.formattedValue();
 
     return mainContainer;
+  }
+
+  formattedKey() {
+    return PropertyIconed.KEY_NAMES[this.key];
   }
 
   formattedValue() {

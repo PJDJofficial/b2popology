@@ -258,7 +258,6 @@
               "transforms the 10 nearest untransformed dart monkeys within 50 radius (up to 2-4-2) into superfans",
               "if limit isn't reached, also transforms newly placed dart monkeys until reached",
               "if sold, monkeys remain transformed",
-              "if transformed darts are upgraded to a non-2-5-2 dart monkey, they do not acquire those upgrades until end of duration",
               "superfans inherit crosspathing benefits"
             ]
           }
@@ -301,7 +300,6 @@
               "transforms the 20 nearest untransformed dart monkeys within 50 radius (up to 2-4-2) into superfans",
               "if limit isn't reached, also transforms newly placed dart monkeys until reached",
               "if sold, monkeys remain transformed",
-              "if transformed darts are upgraded to a non-2-5-2 dart monkey, they do not acquire those upgrades until end of duration",
               "superfans inherit crosspathing benefits"
             ]
           }
@@ -365,6 +363,7 @@
     {
       "path": "004",
       "name": "Sharp Shooter",
+      "cost" : 2300,
       "buffs" : [
         {
           "type": "damage",

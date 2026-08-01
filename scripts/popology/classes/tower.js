@@ -1,6 +1,8 @@
 import { Upgrade } from './upgrade.js';
 import { PropertiesManager } from './properties/properties-manager.js';
 import { PathSelector } from '/scripts/popology/ui/path-selector.js';
+import { PropertiesContainer } from '../ui/properties-container.js';
+import { ViewSwitcher } from '../ui/view-switcher.js';
 
 export class Tower {
 
@@ -27,49 +29,66 @@ export class Tower {
   async toHTML(path, parent) {
     if (!path) path = '000';
 
-    const properties = Array.from(this.properties)
+    const upgrade = this.getUpgrade(path);
+    const properties = [...Array.from(this.properties), PropertiesManager.createProperty('cost', this.getTotalCost(path))];
     const attacks = this.getAttacks(path);
     const abilities = this.getAbilities(path);
     const subtowers = this.getSubtowers(path);
     const externalBuffs = this.getExternalBuffs(path);
-    const totalCost = this.getTotalCost(path);
 
     const rootContainer = document.createElement('div');
     const basicsContainer = document.createElement('div');
-    const upgradesContainer = document.createElement('div');
+    const wholeTowerContainer = document.createElement('div');
+    const upgradeContainer = document.createElement('div');
     const towerContainer = document.createElement('div');
+    const centerViewButtonContainer = document.createElement('div');
+    const viewButtons = new ViewSwitcher("view", [
+      {
+        "element" : wholeTowerContainer,
+        "state" : "whole",
+        "text" : "Whole Tower"
+      },
+      {
+        "element" : upgradeContainer,
+        "state" : "upgrade",
+        "text" : "Selected Upgrade"
+      }
+    ]);
     const pathSelector = new PathSelector(this, path);
     const pathSelectorHTML = await pathSelector.toHTML(parent);
     const towerName = document.createElement('h1');
     const upgradeName = document.createElement('h2');
     const towerImageContainer = document.createElement('div');
     const towerImage = document.createElement('img');
-    const towerPropertiesContainer = document.createElement('div');
+    const towerPropertiesContainer = new PropertiesContainer(properties);
 
-    rootContainer.append(basicsContainer, upgradesContainer);
+    rootContainer.append(basicsContainer, centerViewButtonContainer, wholeTowerContainer, upgradeContainer);
     basicsContainer.append(pathSelectorHTML, towerContainer);
-    towerContainer.append(towerName, upgradeName, towerImageContainer, towerPropertiesContainer);
+    towerContainer.append(towerName, upgradeName, towerImageContainer, towerPropertiesContainer.toHTML());
     towerImageContainer.append(towerImage);
+    centerViewButtonContainer.append(...viewButtons.toHTML());
 
     basicsContainer.classList.add('basics-container')
     towerContainer.classList.add('tower-container');
-    upgradesContainer.classList.add('upgrades-container');
+    centerViewButtonContainer.classList.add('center-container');
+    wholeTowerContainer.classList.add('whole-tower-container');
     towerImageContainer.classList.add('tower-image-container');
-    towerPropertiesContainer.classList.add('properties-container');
+
+    const state = window.history.state ?? {};
+    wholeTowerContainer.hidden = (state.view == "upgrade");
+    upgradeContainer.hidden = (!state.view || state.view == "whole");
 
     towerName.textContent = this.formattedName(path)
-    upgradeName.textContent = this.getUpgrade(path).name;
+    upgradeName.textContent = upgrade.name;
     towerImage.src = this.getImagePath(path);
 
-    if (totalCost) properties.push(PropertiesManager.createProperty('cost', totalCost));
-
-    properties.forEach(property => towerPropertiesContainer.append(property.toHTML()));
+    upgradeContainer.append(upgrade.toHTML());
 
     if (attacks != null && attacks.length > 0) {
       const attacksHeader = document.createElement('h3');
       const attacksContainer = document.createElement('div');
 
-      upgradesContainer.append(attacksHeader, attacksContainer);
+      wholeTowerContainer.append(attacksHeader, attacksContainer);
 
       attacksHeader.textContent = 'Attacks';
 
@@ -80,7 +99,7 @@ export class Tower {
       const abilitiesHeader = document.createElement('h3');
       const abilitiesContainer = document.createElement('div');
 
-      upgradesContainer.append(abilitiesHeader, abilitiesContainer);
+      wholeTowerContainer.append(abilitiesHeader, abilitiesContainer);
 
       abilitiesHeader.textContent = 'Abilities';
 
@@ -103,20 +122,20 @@ export class Tower {
       const ebHeader = document.createElement('h3');
       const ebContainer = document.createElement('div');
 
-      upgradesContainer.append(ebHeader, ebContainer);
+      wholeTowerContainer.append(ebHeader, ebContainer);
 
       ebHeader.textContent = 'External Buffs';
 
       externalBuffs.forEach(eb => ebContainer.append(eb.toHTML()));
     }
 
-    const endOfRound = this.getUpgrade(path).endOfRound;
+    const endOfRound = upgrade.endOfRound;
 
     if (endOfRound != null) {
       const eorHeader = document.createElement('h3');
       const eorContainer = document.createElement('div');
 
-      upgradesContainer.append(eorHeader, eorContainer);
+      wholeTowerContainer.append(eorHeader, eorContainer);
 
       eorHeader.textContent = 'End Of Round';
 

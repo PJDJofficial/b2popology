@@ -44,6 +44,12 @@
           "operation" : "add",
           "value" : "wall of fire can be placed behind walls, and receives manual targeting on any location within range",
           "affectedAttacks" : [ "wof" ]
+        },
+        {
+          "type" : "notes",
+          "operation" : "add",
+          "value" : "flame can see past obstacles, but will collide with them",
+          "affectedAttacks" : [ "flame" ]
         }
       ]
     },
@@ -228,6 +234,7 @@
       "attacks" : [
         {
           "id" : "fireball",
+          "name" : "Fireball",
           "properties" : {
             "cooldown" : 2.6,
             "summonAttack" : [
@@ -259,7 +266,7 @@
       "attacks" : [
         {
           "id" : "wof",
-          "name" : "Wall of Fire",
+          "name" : "Place Fire",
           "properties" : {
             "cooldown" : 5.5,
             "initialCooldown" : 1.0,
@@ -306,16 +313,64 @@
             },
             "pierce" : 4,
             "range" : 50,
-            "cooldown" : 0.1
-
+            "cooldown" : 0.1,
+            "damageType" : "fire",
+            "dots" : [
+              {
+                "name" : "burn",
+                "properties" : {
+                  "damage" : 1,
+                  "damageType" : "fire",
+                  "tickDuration" : 1.5,
+                  "totalDuration" : 3.1
+                }
+              }
+            ]
           }
+        }
+      ],
+      "buffs" : [
+        {
+          "type" : "cooldown",
+          "operation" : "set",
+          "value" : 4.5,
+          "affectedAttacks" : [ "wof" ]
+        },
+        {
+          "type" : "damage",
+          "operation" : "add",
+          "value" : 7,
+          "affectedAttacks" : [ "fireball-explosion" ]
+        },
+        {
+          "type" : "blastRadius",
+          "operation" : "add",
+          "value" : 4,
+          "affectedAttacks" : [ "fireball-explosion" ]
+        },
+        {
+          "type" : "cooldown",
+          "operation" : "mul",
+          "value" : 0.6666667,
+          "affectedAttacks" : [ "wof-track-item" ]
+        },
+        {
+          "type" : "pierce",
+          "operation" : "add",
+          "value" : 5,
+          "affectedAttacks" : [ "wof-track-item" ]
         }
       ]
     },
     {
       "path": "040",
       "name": "Summon Phoenix",
-      "cost": 4000
+      "cost": 4000,
+      "ability" : [
+        {
+
+        }
+      ]
     },
     {
       "path": "050",
@@ -332,6 +387,12 @@
           "operation" : "add",
           "value" : 5,
           "affectedAttacks" : [ "fireball-explosion", "wof-track-item" ]
+        },
+        {
+          "type" : "pierce",
+          "operation" : "add",
+          "value" : 2,
+          "affectedAttacks" : [ "flame" ]
         },
         {
           "type" : "ignoreObstacle",

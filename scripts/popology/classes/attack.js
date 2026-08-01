@@ -122,4 +122,25 @@ export class Attack {
     return rootContainer;
   }
 
+  toHTMLSimple() {
+    const rootContainer = document.createElement('div');
+
+    const centerContainer = document.createElement('div');
+    const propertiesContainer = new PropertiesContainer(this.properties, this)
+    propertiesContainer.addChildren(this.dots);
+
+    if (this.properties.flags != null && this.properties.flags.includes('thirdaryBackground')) {
+      const backgroundColorVariable = '--background-thirdary';
+      const backgroundColor = window.getComputedStyle(document.body).getPropertyValue(backgroundColorVariable);
+      propertiesContainer.setBackgroundColor(backgroundColor);
+    }
+
+    rootContainer.append(centerContainer);
+    centerContainer.append(propertiesContainer.toHTML());
+
+    centerContainer.classList.add('center-container');
+
+    return rootContainer;
+  }
+
 }

@@ -31,4 +31,23 @@ export class Upgrade {
     return new Upgrade(data.path, data.name, data.cost, attacks, buffs, abilities, data.subtowers, externalBuffs, data.endOfRound, data.metadata);
   }
 
+  toHTML() {
+    const rootContainer = document.createElement('div');
+    const upgradeTitle = document.createElement('h4');
+    const upgradeContent = document.createElement('ul');
+
+    rootContainer.append(upgradeTitle, upgradeContent);
+
+    //if (this.attacks != null) this.attacks.forEach(attack => rootContainer.append(attack.toHTMLSimple()));
+    //if (this.abilities != null) this.abilities.forEach(ability => rootContainer.append(ability.toHTMLSimple()));
+    if (this.buffs != null) this.buffs.forEach(buff => upgradeContent.append(buff.toHTMLSimple()));
+
+    rootContainer.classList.add('properties-container-styler');
+    upgradeTitle.style.color = 'var(--text-common)';
+
+    upgradeTitle.textContent = `${this.path} - ${this.name} - $${this.cost.toLocaleString('en-US')}`;
+
+    return rootContainer;
+  }
+
 }

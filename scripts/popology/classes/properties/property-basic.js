@@ -7,7 +7,7 @@ export class PropertyBasic extends Property {
   }
 
   toHTML() {
-    if (!this.key || !this.val) return;
+    if (this.key == null || this.val == null) return;
 
     const container = document.createElement('div');
     const pkey = document.createElement('p');
