@@ -45,7 +45,6 @@ export class PropertiesContainer {
     if (unkeyProperties.length != 0) rootContainer.append(unkeyPropertiesContainer);
 
     minorProperties.forEach((property) => {
-      console.log(property);
       const propertyHTML = property.toHTML(this.attack);
       if (propertyHTML == null) return;
       if (Array.isArray(propertyHTML)) minorPropertiesContainer.append(...propertyHTML);

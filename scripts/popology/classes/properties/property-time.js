@@ -7,7 +7,7 @@ export class PropertyTime extends PropertyBasic {
   }
 
   formattedValue() {
-    if (this.key == 'initialCooldown' && this.val == 0) return 'None (Instant)';
+    if (this.key == 'initialCooldown' && this.val == 0) return '0s';
     return `${this.val}s`;
   }
 

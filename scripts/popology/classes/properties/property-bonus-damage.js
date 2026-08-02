@@ -33,6 +33,7 @@ export class PropertyBonusDamage extends Property {
 
   formatVal(val, attack) {
     const damageProperty = attack.properties.find(property => property.key == 'damage');
+    if (damageProperty == null) return val;
     return `${val + damageProperty.val} (+${val})`;
   }
 

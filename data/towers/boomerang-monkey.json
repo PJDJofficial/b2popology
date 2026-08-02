@@ -235,10 +235,12 @@
           "value": {
             "name" : "shred",
             "properties" : {
-            "moab" : 100,
-            "damageType" : "sharp",
-            "tickDuration" : 1.0,
-            "totalDuration" : 4.1
+              "bonusDamage" : {
+                "moab" : 100
+              },
+              "damageType" : "sharp",
+              "tickDuration" : 1.0,
+              "totalDuration" : 4.1
             }
           },
           "affectedAttacks": [
