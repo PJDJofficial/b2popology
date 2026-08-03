@@ -90,7 +90,7 @@ export class PropertiesManager {
   static createProperty(key, val) {
     const PropertyClass = PropertiesManager.propertyMap[key];
     if (PropertyClass != null) return new PropertyClass(key, val);
-    if (key == 'dots') {
+    if (key === 'dots') {
       const propertyArray = [];
       let i = 0;
       val.forEach((dot) => {
@@ -102,7 +102,7 @@ export class PropertiesManager {
       });
       return propertyArray;
     }
-    if (key == 'dot') {
+    if (key === 'dot') {
       let dotObject;
       if (val instanceof DoT) dotObject = val;
       else dotObject = DoT.fromData(val);
