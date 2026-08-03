@@ -337,6 +337,19 @@
       "path": "050",
       "name": "Elite Sniper",
       "cost": 14000,
+      "externalBuffs" : [
+        {
+          "targets" : [ "sniper-monkey" ],
+          "buffs" : [
+            {
+              "type" : "cooldown",
+              "operation" : "mul",
+              "value" : 0.8,
+              "affectedAttacks" : [ "all" ]
+            }
+          ]
+        }
+      ],
       "abilities" : [
         {
           "id" : "elite-supplies",

@@ -1,5 +1,7 @@
 import { Attack } from '../attack.js';
 import { DoT } from '../dot.js';
+import { ExternalBuff } from '../external-buff.js';
+
 import { PropertyAlternateAttack } from './property-alternate-attack.js';
 import { PropertyAttributed } from './property-attributed.js'
 import { PropertyBasic } from './property-basic.js';
@@ -11,7 +13,7 @@ import { PropertyCrit } from './property-crit.js';
 import { PropertyDamageType } from './property-damage-type.js';
 import { PropertyDebuff } from './property-debuff.js';
 import { PropertyDoT } from './property-dot.js';
-import { PropertyExternalBuff } from './property-external-buff.js';
+import { PropertyExternalBuffs } from './property-external-buffs.js';
 import { PropertyFootnote } from './property-footnote.js';
 import { PropertyFreeze } from './property-freeze.js';
 import { PropertyHidden } from './property-hidden.js';
@@ -72,7 +74,9 @@ export class PropertiesManager {
 
     "debuff": PropertyDebuff,
 
-    "externalBuff" : PropertyExternalBuff,
+    "attackType" : PropertyHidden,
+
+    "summonAttack" : PropertySummonAttack
   };
 
   static propertiesFromData(data) {
@@ -108,8 +112,10 @@ export class PropertiesManager {
       else dotObject = DoT.fromData(val);
       return new PropertyDoT('dot', dotObject);
     }
-    if (key == 'summonAttack') return new PropertySummonAttack(key, val);
-    if (['attackType'].includes(key)) return new PropertyHidden(key, val);
+    if (key == 'externalBuffs') {
+      const externalBuffs = val.map(ExternalBuff.fromData);
+      return new PropertyExternalBuffs(key, externalBuffs);
+    }
     if (key == 'embeddedAttacks') {
       const embeddedAttacks = [];
       val.forEach((attack) => {
@@ -128,7 +134,7 @@ export class PropertiesManager {
 
     properties.forEach((property) => {
       if (
-        ['notes', 'desc', 'summonAttack', 'knockback', 'debuff', 'stun', 'freeze'].includes(property.key) ||
+        ['notes', 'desc', 'summonAttack', 'knockback', 'debuff', 'stun', 'freeze', 'externalBuffs'].includes(property.key) ||
         property instanceof PropertyDoT
       ) majorProperties.push(property);
       else if (property instanceof PropertyUnkeyed) unkeyProperties.push(property);

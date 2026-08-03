@@ -125,7 +125,6 @@ export class Tower {
       wholeTowerContainer.append(ebHeader, ebContainer);
 
       ebHeader.textContent = 'External Buffs';
-
       externalBuffs.forEach(eb => ebContainer.append(eb.toHTML()));
     }
 
@@ -324,7 +323,7 @@ export class Tower {
     const externalBuffs = [];
     this.upgrades.forEach((upgrade) => {
       if (this.isChildUpgrade(path, upgrade.path) && upgrade.externalBuffs) {
-        upgrade.externalBuffs.forEach(externalBuff => externalBuffs.push(externalBuff));
+        externalBuffs.push(upgrade.externalBuffs);
       }
     });
 
