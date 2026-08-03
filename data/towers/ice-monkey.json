@@ -312,17 +312,19 @@
               "durationWeak" : 3,
               "slowBlimps" : 2.25
             },
-            "externalBuff" : {
-              "targets" : ["ice-monkey", "fusty-the-snowman" ],
-              "buffs" : [
-                {
-                  "type" : "cooldown",
-                  "operation" : "mul",
-                  "value" : 0.66666667,
-                  "affectedAttacks": [ "all" ]
-                }
-              ]
-            }
+            "externalBuffs" : [
+              {
+                "targets" : [ "ice-monkey", "fusty-the-snowman" ],
+                "buffs" : [
+                  {
+                    "type" : "cooldown",
+                    "operation" : "mul",
+                    "value" : 0.66666667,
+                    "affectedAttacks": [ "all" ]
+                  }
+                ]
+              }
+            ]
           }
         }
       ]
@@ -352,17 +354,19 @@
               "duration" : 12,
               "slowBlimps" : 2.25
             },
-            "externalBuff" : {
-              "targets" : ["ice-monkey", "fusty-the-snowman" ],
-              "buffs" : [
-                {
-                  "type" : "cooldown",
-                  "operation" : "mul",
-                  "value" : 0.5,
-                  "affectedAttacks": [ "all" ]
-                }
-              ]
-            }
+            "externalBuffs" : [
+              {
+                "targets" : ["ice-monkey", "fusty-the-snowman" ],
+                "buffs" : [
+                  {
+                    "type" : "cooldown",
+                    "operation" : "mul",
+                    "value" : 0.5,
+                    "affectedAttacks": [ "all" ]
+                  }
+                ]
+              }
+            ]
           }
         }
       ],

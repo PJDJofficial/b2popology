@@ -22,11 +22,8 @@ export class Upgrade {
     const attacks = (data.attacks || []).map(Attack.fromData);
     const buffs = (data.buffs || []).map(Buff.fromData);
     const abilities = (data.abilities || []).map(Ability.fromData);
-    const externalBuffs = [];
-
-    if (data.externalBuffs != null) {
-      data.externalBuffs.forEach(externalBuff => externalBuffs.push(PropertiesManager.createProperty('externalBuff', externalBuff)));
-    }
+    let externalBuffs = data.externalBuffs;
+    if (data.externalBuffs != null) externalBuffs = PropertiesManager.createProperty('externalBuffs', data.externalBuffs);
 
     return new Upgrade(data.path, data.name, data.cost, attacks, buffs, abilities, data.subtowers, externalBuffs, data.endOfRound, data.metadata);
   }
