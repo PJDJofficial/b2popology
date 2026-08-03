@@ -92,7 +92,17 @@ export class Attack {
       newBuff.type = 'crit';
       return attack.buffedBy(newBuff);
     }*/
+    attack.clearEmptyArrays();
     return attack;
+  }
+
+  clearEmptyArrays() {
+    const newProperties = [];
+    this.properties.forEach((property) => {
+      if (property.key == 'summonAttacks' && property.val.length == 0); // pass
+      else newProperties.push(property);
+    });
+    this.properties = newProperties;
   }
 
   toHTML() {

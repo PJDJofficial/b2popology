@@ -68,14 +68,15 @@
       "buffs" : [
         {
           "type" : "damageType",
-          "operation" : "set",
+          "operation" : "upgrade",
           "value" : "glacier",
-          "affectedAttacks" : [ "freeze" ]
+          "affectedAttacks" : [ "freeze", "ice-explosion"]
         },
         {
           "type" : "damageType",
-          "operation" : "set",
+          "operation" : "upgrade",
           "value" : "normal",
+          "affectedAttacks" : [ "icicles" ],
           "affectedAbilities" : [ "snowstorm" ]
         },
         {
@@ -129,7 +130,7 @@
         },
         {
           "type" : "damageType",
-          "operation" : "set",
+          "operation" : "upgrade",
           "value" : "normal",
           "affectedAttacks" : [ "freeze" ]
         },
@@ -449,8 +450,8 @@
                   "damage" : 2,
                   "pierce" : 30,
                   "blastRadius" : 20,
-                  "damageType" : "glacier",
-                  "attackType" : "ice-explosion",
+                  "damageType" : "cold",
+                  "attackType" : "ice explosion",
                   "freeze" : {
                     "duration" : 1.5,
                     "soak" : 1
@@ -478,13 +479,81 @@
           "operation" : "remove",
           "value" : "blimps",
           "affectedAttacks" : [ "ice-bomb" ]
+        },
+        {
+          "type" : "appendAttack",
+          "value" : {
+            "id" : "icicles",
+            "properties" : {
+              "damage" : 2,
+              "bonusDamage" : {
+                "moab" : 6
+              },
+              "pierce" : 3,
+              "damageType" : "sharp",
+              "attackType" : "icicles"
+            }
+          },
+          "affectedAttacks" : [ "ice-bomb" ]
+        },
+        {
+          "type" : "summonAttack",
+          "operation" : "append",
+          "value" : {
+            "attackId" : "icicles",
+            "type" : [ "onContactNonBlimp" ]
+          },
+          "affectedAttacks" : [ "ice-bomb" ]
         }
       ]
     },
     {
       "path": "005",
       "name": "Icicle Impale",
-      "cost": 32000
+      "cost": 32000,
+      "buffs" : [
+        {
+          "type" : "bonusDamage",
+          "operation" : "add",
+          "value" : {
+            "moab" : 62
+          },
+          "affectedAttacks" : [ "icicles" ]
+        },
+        {
+          "type" : "cooldown",
+          "operation" : "mul",
+          "value" : 0.75,
+          "affectedAttacks" : [ "ice-bomb" ]
+        },
+        {
+          "type" : "damageType",
+          "operation" : "upgrade",
+          "value" : "shatter",
+          "affectedAttacks" : [ "ice-explosion" ]
+        },
+        {
+          "type" : "summonAttack",
+          "operation" : "remove",
+          "value" : "icicles",
+          "affectedAttacks" : [ "ice-bomb" ]
+        },
+        {
+          "type" : "notes",
+          "operation" : "add",
+          "value" : "frozen ZOMGs are 50% slower, other frozen blimps move at ZOMGs' original speed (~5 units per second)",
+          "affectedAttacks" : [ "icicles" ]
+        },
+        {
+          "type" : "summonAttack",
+          "operation" : "append",
+          "value" : {
+            "attackId" : "icicles",
+            "type" : [ "onContact" ]
+          },
+          "affectedAttacks" : [ "ice-bomb" ]
+        }
+      ]
     }
   ]
 }
