@@ -391,7 +391,7 @@
                       "damage" : 3,
                       "pierce" : 100,
                       "blastRadius" : 30,
-                      "damageType" : "explosion",
+                      "damageType" : "normal",
                       "attackType" : "explosion"
                     }
                   }
@@ -414,6 +414,7 @@
           "type" : "bonusDamage",
           "operation" : "add",
           "value" : {
+            "ceram": 4,
             "moab" : 22
           },
           "affectedAttacks" : [
@@ -459,7 +460,7 @@
                       "damage" : 3,
                       "pierce" : 100,
                       "blastRadius" : 30,
-                      "damageType" : "explosion",
+                      "damageType" : "normal",
                       "attackType" : "explosion"
                     }
                   }
@@ -479,6 +480,12 @@
           "affectedAttacks" : [
             "base-explosion"
           ]
+        },
+        {
+          "type": "damageType",
+          "operation": "set",
+          "value": "normal",
+          "affectedAttacks" : [ "base-explosion" ]
         }
       ]
     },
@@ -614,6 +621,7 @@
           "name" : "Superbomb",
           "properties" : {
             "range" : 40,
+            "cooldown" : 1.5,
             "summonAttack" : [
               {
                 "attackId" : "super-explosion",
