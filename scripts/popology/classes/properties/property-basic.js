@@ -23,6 +23,10 @@ export class PropertyBasic extends Property {
     return container;
   }
 
+  toText() {
+    return `${this.formattedValue()} ${this.formattedKey()}`;
+  }
+
   formattedKey() { // Converts from camelCase to readable text
     return this.key
       .replace(/([a-z0-9])([A-Z])/g, "$1 $2")

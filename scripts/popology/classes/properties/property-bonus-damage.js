@@ -27,6 +27,15 @@ export class PropertyBonusDamage extends Property {
     return propertiesHTML;
   }
 
+  toText(attack) {
+    let str = '';
+    Object.keys(this.val).forEach((key, i, arr) => {
+      str += `${this.formatKey(key)} ${this.formatVal(this.val[key], attack)}`;
+      if (i != arr.length - 1) str += ', ';
+    });
+    return str;
+  }
+
   formatKey(key) {
     return `${PropertyBonusDamage.FORMATTED_TYPES[key]} Damage`;
   }
