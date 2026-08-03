@@ -133,6 +133,7 @@ export class PropertiesManager {
     const unkeyProperties = [];
 
     properties.forEach((property) => {
+      if (property instanceof PropertyHidden) return;
       if (
         ['notes', 'desc', 'summonAttack', 'knockback', 'debuff', 'stun', 'freeze', 'externalBuffs'].includes(property.key) ||
         property instanceof PropertyDoT

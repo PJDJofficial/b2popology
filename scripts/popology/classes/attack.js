@@ -115,7 +115,7 @@ export class Attack {
     }
 
     const centerContainer = document.createElement('div');
-    const propertiesContainer = new PropertiesContainer(this.properties, this)
+    const propertiesContainer = new PropertiesContainer(this.properties, this);
     propertiesContainer.addChildren(this.dots);
 
     if (this.properties.flags != null && this.properties.flags.includes('thirdaryBackground')) {
@@ -133,24 +133,24 @@ export class Attack {
   }
 
   toHTMLSimple() {
-    const rootContainer = document.createElement('div');
+    const minorProperties = PropertiesManager.sortProperties(this.properties, 'minor');
+    const unkeyProperties = PropertiesManager.sortProperties(this.properties, 'unkey');
+    const majorProperties = PropertiesManager.sortProperties(this.properties, 'major');
 
-    const centerContainer = document.createElement('div');
-    const propertiesContainer = new PropertiesContainer(this.properties, this)
-    propertiesContainer.addChildren(this.dots);
+    const rootli = document.createElement('li');
+    const minorul = document.createElement('ul');
 
-    if (this.properties.flags != null && this.properties.flags.includes('thirdaryBackground')) {
-      const backgroundColorVariable = '--background-thirdary';
-      const backgroundColor = window.getComputedStyle(document.body).getPropertyValue(backgroundColorVariable);
-      propertiesContainer.setBackgroundColor(backgroundColor);
+    rootli.append(minorul);
+
+    let str = '';
+    for (let i = 0; i < minorProperties.length; i++) {
+      str += minorProperties[i].toText(this);
+      if (i == minorProperties.length - 1); // pass
+      else str += ', ';
     }
+    minorul.textContent = str;
 
-    rootContainer.append(centerContainer);
-    centerContainer.append(propertiesContainer.toHTML());
-
-    centerContainer.classList.add('center-container');
-
-    return rootContainer;
+    return rootli;
   }
 
 }

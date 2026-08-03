@@ -25,4 +25,6 @@ export class PropertyCamo extends Property {
     return container;
   }
 
+  toText() { return 'has camo'; }
+
 }
