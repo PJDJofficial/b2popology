@@ -51,8 +51,7 @@ export class Ability {
     const rootContainer = document.createElement('div');
     const abilityName = document.createElement('h4');
     const centerContainer = document.createElement('div');
-    const propertiesContainer = new PropertiesContainer(properties, this)
-    console.log(properties);
+    const propertiesContainer = new PropertiesContainer(properties, this);
 
     propertiesContainer.addChildren(this.buffs);
 

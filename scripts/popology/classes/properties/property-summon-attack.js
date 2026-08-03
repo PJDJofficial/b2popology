@@ -42,6 +42,7 @@ export class PropertySummonAttack extends Property {
   typeToText(type) {
     switch (type) {
       case 'onContact': return 'on initial contact';
+      case 'onContactNonBlimp': return 'on contact with a non-blimp';
       case 'onPop': return 'on bloon popped';
       case 'onPierce': return 'when all pierce is used up';
       case 'onHalfPierce': return 'when half of its pierce is used up';
