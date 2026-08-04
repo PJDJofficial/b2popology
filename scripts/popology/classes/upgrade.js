@@ -35,7 +35,7 @@ export class Upgrade {
 
     rootContainer.append(upgradeTitle, upgradeContent);
 
-    if (this.attacks != null) this.attacks.forEach(attack => rootContainer.append(attack.toHTMLSimple()));
+    if (this.attacks != null) this.attacks.forEach(attack => upgradeContent.append(attack.toHTMLSimple()));
     //if (this.abilities != null) this.abilities.forEach(ability => rootContainer.append(ability.toHTMLSimple()));
     if (this.buffs != null) this.buffs.forEach(buff => upgradeContent.append(buff.toHTMLSimple()));
 

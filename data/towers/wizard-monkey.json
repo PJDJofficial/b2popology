@@ -368,9 +368,11 @@
       "cost": 4000,
       "ability" : [
         {
-
+          "id" : "summon-phoenix",
+          "name" : "Summon Phoenix"
         }
-      ]
+      ],
+      "subtowers" : [ "phoenix" ]
     },
     {
       "path": "050",

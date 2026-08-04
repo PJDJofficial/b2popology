@@ -61,15 +61,18 @@ export class Tower {
     const towerImageContainer = document.createElement('div');
     const towerImage = document.createElement('img');
     const towerPropertiesContainer = new PropertiesContainer(properties);
+    const centerTowerPropertiesContainer = document.createElement('div');
 
     rootContainer.append(basicsContainer, centerViewButtonContainer, wholeTowerContainer, upgradeContainer);
     basicsContainer.append(pathSelectorHTML, towerContainer);
-    towerContainer.append(towerName, upgradeName, towerImageContainer, towerPropertiesContainer.toHTML());
+    towerContainer.append(towerName, upgradeName, towerImageContainer, centerTowerPropertiesContainer);
     towerImageContainer.append(towerImage);
+    centerTowerPropertiesContainer.append(towerPropertiesContainer.toHTML());
     centerViewButtonContainer.append(...viewButtons.toHTML());
 
-    basicsContainer.classList.add('basics-container')
+    basicsContainer.classList.add('basics-container');
     towerContainer.classList.add('tower-container');
+    centerTowerPropertiesContainer.classList.add('center-container');
     centerViewButtonContainer.classList.add('center-container');
     wholeTowerContainer.classList.add('whole-tower-container');
     towerImageContainer.classList.add('tower-image-container');

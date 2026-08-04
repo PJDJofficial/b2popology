@@ -138,17 +138,32 @@ export class Attack {
     const majorProperties = PropertiesManager.sortProperties(this.properties, 'major');
 
     const rootli = document.createElement('li');
-    const minorul = document.createElement('ul');
+    const propertiesul = document.createElement('ul');
+    const minorli = document.createElement('li');
 
-    rootli.append(minorul);
-
-    let str = '';
-    for (let i = 0; i < minorProperties.length; i++) {
-      str += minorProperties[i].toText(this);
-      if (i == minorProperties.length - 1); // pass
-      else str += ', ';
+    rootli.append(document.createTextNode(`${this.id} attack:`), propertiesul);
+    if (this.overwrites != null && this.overwrites.length > 0) {
+      let str = 'replaces ';
+      for (let i = 0; i < this.overwrites.length; i++) {
+        str += this.overwrites[i];
+        if (i != this.overwrites.length - 1) str += ', ';
+      }
+      str += ' attacks';
+      const overwritesli = document.createElement('li');
+      overwritesli.textContent = str;
+      propertiesul.append(overwritesli);
     }
-    minorul.textContent = str;
+    propertiesul.append(minorli);
+
+    {
+      let str = '';
+      for (let i = 0; i < minorProperties.length; i++) {
+        str += minorProperties[i].toText(this);
+        if (i == minorProperties.length - 1); // pass
+        else str += ', ';
+      }
+      minorli.textContent = str;
+    }
 
     return rootli;
   }
