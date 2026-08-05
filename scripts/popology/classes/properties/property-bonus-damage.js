@@ -8,7 +8,9 @@ export class PropertyBonusDamage extends Property {
     lead : "Lead",
     fort : "Fortified",
     moab : "Moab",
-    camo : "Camo"
+    camo : "Camo",
+    stun : "Stunned Bloon",
+    bad : "BAD"
   }
 
   clone() {
@@ -20,7 +22,7 @@ export class PropertyBonusDamage extends Property {
 
     const propertiesHTML = [];
     Object.keys(this.val).forEach((key) => {
-      const property = new PropertyBasic(this.formatKey(key),this.formatVal(this.val[key], attack));
+      const property = new PropertyBasic(this.formatKey(key),this. formatVal(key, attack));
       propertiesHTML.push(property.toHTML());
     });
 
@@ -40,10 +42,12 @@ export class PropertyBonusDamage extends Property {
     return `${PropertyBonusDamage.FORMATTED_TYPES[key]} Damage`;
   }
 
-  formatVal(val, attack) {
+  formatVal(key, attack) {
+    let total = this.val[key];
     const damageProperty = attack.properties.find(property => property.key == 'damage');
-    if (damageProperty == null) return val;
-    return `${val + damageProperty.val} (+${val})`;
+    if (damageProperty != null) total += damageProperty.val;
+    if (key == 'bad' && this.val["moab"] != null) total += this.val["moab"];
+    return `+${this.val[key]} (${total} total)`;
   }
 
   applyBuff(buff) {

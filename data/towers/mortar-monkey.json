@@ -7,58 +7,332 @@
     "size": [
       8
     ],
-    "placement": 0
+    "placement": 0,
+    "intelRange" : 30
   },
   "upgrades": [
     {
       "path": "000",
       "name": "Base",
-      "cost": 700
+      "cost": 700,
+      "attacks" : [
+        {
+          "id" : "shell",
+          "name" : "Shell",
+          "properties" : {
+            "cooldown" : 2.0,
+            "notes" : [ "targets randomly within 8 units of selected point" ],
+            "embeddedAttacks" : [
+              {
+                "id" : "shell-explosion",
+                "properties" : {
+                  "damage" : 1,
+                  "pierce" : 35,
+                  "blastRadius" : 18,
+                  "damageType" : "explosion",
+                  "attackType" : "explosion"
+                }
+              }
+            ],
+            "summonAttack" : [
+              {
+                "attackId" : "shell-explosion",
+                "type" : [ "onExpiry" ]
+              }
+            ]
+          }
+        }
+      ]
     },
     {
       "path": "100",
       "name": "Bigger Blast",
-      "cost": 350
+      "cost": 350,
+      "buffs" : [
+        {
+          "type" : "pierce",
+          "operation" : "add",
+          "value" : 10,
+          "affectedAttacks" : [ "shell-explosion" ]
+        },
+        {
+          "type" : "blastRadius",
+          "operation" : "add",
+          "value" : 12,
+          "affectedAttacks" : [ "shell-explosion" ]
+        }
+      ]
     },
     {
       "path": "200",
       "name": "Bloon Buster",
-      "cost": 500
+      "cost": 500,
+      "buffs" : [
+        {
+          "type" : "damage",
+          "operation" : "add",
+          "value" : 1,
+          "affectedAttacks" : [ "shell-explosion" ]
+        }
+      ]
     },
     {
       "path": "300",
       "name": "Shell Shock",
-      "cost": 1100
+      "cost": 1100,
+      "buffs" : [
+        {
+          "type" : "blastRadius",
+          "operation" : "add",
+          "value" : 6,
+          "affectedAttacks" : [ "shell-explosion" ]
+        },
+        {
+          "type" : "appendAttack",
+          "value" : {
+            "id" : "stun-explosion",
+            "properties" : {
+              "pierce" : 45,
+              "blastRadius" : 19,
+              "cantTarget" : [ "black", "zebra" , "blimps" ],
+              "stun" : {
+                "stunDurations" : {
+                  "bloons" : 0.4
+                }
+              },
+              "attackType" : "stun explosion"
+            }
+          },
+          "affectedAttacks" : [ "shell" ]
+        },
+        {
+          "type" : "summonAttack",
+          "operation" : "append",
+          "value" : {
+            "attackId" : "stun-explosion",
+            "type" : [ "onExpiry" ]
+          },
+          "affectedAttacks" : [ "shell" ]
+        },
+        {
+          "type" : "appendAttack",
+          "value" : {
+            "id" : "shockwave",
+            "properties" : {
+              "damage" : 1,
+              "pierce" : 45,
+              "blastRadius" : 57,
+              "damageType" : "explosion",
+              "attackType" : "shockwave"
+            }
+          },
+          "affectedAttacks" : [ "shell" ]
+        },
+        {
+          "type" : "summonAttack",
+          "operation" : "append",
+          "value" : {
+            "attackId" : "shockwave",
+            "type" : [ "onExpiry" ]
+          },
+          "affectedAttacks" : [ "shell" ]
+        }
+      ]
     },
     {
       "path": "400",
       "name": "The Big One",
-      "cost": 7300
+      "cost": 7300,
+      "buffs" : [
+        {
+          "type" : "damage",
+          "operation" : "add",
+          "value" : 5,
+          "affectedAttacks" : [ "shell-explosion" ]
+        },
+        {
+          "type" : "pierce",
+          "operation" : "add",
+          "value" : 55,
+          "affectedAttacks" : [ "shell-explosion", "stun-explosion","shockwave" ]
+        },
+        {
+          "type" : "blastRadius",
+          "operation" : "add",
+          "value" : 20,
+          "affectedAttacks" : [ "shell-explosion" ]
+        },
+        {
+          "type" : "damageType",
+          "operation" : "upgrade",
+          "value" : "normal",
+          "affectedAttacks" : [ "shell-explosion", "shockwave" ]
+        },
+        {
+          "type" : "blastRadius",
+          "operation" : "add",
+          "value" : 10,
+          "affectedAttacks" : [ "stun-explosion" ]
+        },
+        {
+          "type" : "blastRadius",
+          "operation" : "add",
+          "value" : 30,
+          "affectedAttacks" : [ "shockwave" ]
+        }
+      ]
     },
     {
       "path": "500",
       "name": "The Biggest One",
-      "cost": 28000
+      "cost": 28000,
+      "buffs" : [
+        {
+          "type" : "damage",
+          "operation" : "add",
+          "value" : 43,
+          "affectedAttacks" : [ "shell-explosion" ]
+        },
+        {
+          "type" : "pierce",
+          "operation" : "add",
+          "value" : 100,
+          "affectedAttacks" : [ "shell-explosion", "stun-explosion", "shockwave" ]
+        },
+        {
+          "type" : "blastRadius",
+          "operation" : "add",
+          "value" : 16,
+          "affectedAttacks" : [ "shell-explosion" ]
+        },
+        {
+          "type" : "blastRadius",
+          "operation" : "add",
+          "value" : 24,
+          "affectedAttacks" : [ "shockwave" ]
+        },
+        {
+          "type" : "blastRadius",
+          "operation" : "add",
+          "value" : 8,
+          "affectedAttacks" : [ "stun-explosion" ]
+        },
+        {
+          "type" : "cantTarget",
+          "operation" : "remove",
+          "value" : ["blimps", "zebra", "black"],
+          "affectedAttacks" : [ "stun-explosion" ]
+        },
+        {
+          "type" : "stun",
+          "operation" : "add",
+          "value" : {
+            "moab" : 0.35,
+            "bfb" : 0.35,
+            "zomg" : 0.35,
+            "ddt" : 0.35
+          },
+          "affectedAttacks" : [ "stun-explosion" ]
+        },
+        {
+          "type" : "bonusDamage",
+          "operation" : "add",
+          "value" : {
+            "ceram" : 20
+          },
+          "affectedAttacks" : [ "shockwave" ]
+        }
+      ]
     },
     {
       "path": "010",
       "name": "Faster Reload",
-      "cost": 350
+      "cost": 350,
+      "buffs" : [
+        {
+          "type" : "cooldown",
+          "operation" : "mul",
+          "value" : 0.75,
+          "affectedAttacks" : [ "shell" ]
+        }
+      ]
     },
     {
       "path": "020",
       "name": "Rapid Reload",
-      "cost": 400
+      "cost": 400,
+      "buffs" : [
+        {
+          "type" : "cooldown",
+          "operation" : "mul",
+          "value" : 0.72,
+          "affectedAttacks" : [ "shell" ]
+        }
+      ]
     },
     {
       "path": "030",
       "name": "Heavy Shells",
-      "cost": 800
+      "cost": 800,
+      "buffs" : [
+        {
+          "type" : "bonusDamage",
+          "operation" : "add",
+          "value" : {
+            "ceram" : 3,
+            "moab" : 1,
+            "fort" : 1,
+            "lead" : 1,
+            "stun" : 2
+          },
+          "affectedAttacks" : [ "shell-explosion" ]
+        },
+        {
+          "type" : "damageType",
+          "operation" : "upgrade",
+          "value" : "normal",
+          "affectedAttacks" : [ "shell-explosion" ]
+        }
+      ]
     },
     {
       "path": "040",
       "name": "Artillery Battery",
-      "cost": 8000
+      "cost": 8000,
+      "buffs" : [
+        {
+          "type" : "cooldown",
+          "operation" : "mul",
+          "value" : 0.25,
+          "affectedAttacks" : [ "shell" ]
+        },
+        {
+          "type" : "bonusDamage",
+          "operation" : "add",
+          "value" : {
+            "bad" : 3
+          },
+          "affectedAttacks" : [ "shell-explosion" ]
+        }
+      ],
+      "abilities" : [
+        {
+          "id" : "bombardment",
+          "name" : "Bombardment",
+          "properties" : {
+            "cooldown" : 60,
+            "duration" : 7
+          },
+          "buffs" : [
+            {
+              "type" : "cooldown",
+              "operation" : "mul",
+              "value" : 0.25,
+              "affectedAttacks" : [ "shell" ]
+            }
+          ]
+        }
+      ]
     },
     {
       "path": "050",
