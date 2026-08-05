@@ -280,7 +280,7 @@
               {
                 "id" : "wof-track-item",
                 "properties" : {
-                  "damage" : 2,
+                  "damage" : 1,
                   "pierce" : 15,
                   "range" : {
                     "value" : 15,
@@ -366,10 +366,15 @@
       "path": "040",
       "name": "Summon Phoenix",
       "cost": 4000,
-      "ability" : [
+      "abilities" : [
         {
           "id" : "summon-phoenix",
-          "name" : "Summon Phoenix"
+          "name" : "Summon Phoenix",
+          "properties" : {
+            "cooldown" : 45,
+            "duration" : 20,
+            "desc" : [ "summons phoenix subtower" ]
+          }
         }
       ],
       "subtowers" : [ "phoenix" ]
@@ -377,13 +382,58 @@
     {
       "path": "050",
       "name": "Wizard Lord Phoenix",
-      "cost": 50000
+      "cost": 50000,
+      "buffs" : [
+        {
+          "type" : "damage",
+          "operation" : "add",
+          "value" : 4,
+          "affectedAttacks" : [ "wof-track-item" ]
+        },
+        {
+          "type" : "damage",
+          "operation" : "add",
+          "value" : 24,
+          "affectedAttacks" : [ "fireball-explosion" ]
+        },
+        {
+          "type" : "damage",
+          "operation" : "add",
+          "value" : 5,
+          "affectedAttacks" : [ "flame" ]
+        },
+        {
+          "type" : "pierce",
+          "operation" : "add",
+          "value" : 46,
+          "affectedAttacks" : [ "flame" ]
+        }
+      ],
+      "abilities" : [
+        {
+          "id" : "transform",
+          "name" : "Transform",
+          "overwrites" : [ "summon-phoenix" ],
+          "properties" : {
+            "cooldown" : 45,
+            "duration" : 20,
+            "desc" : [ "wizard transforms into phoenix-lord" ]
+          }
+        }
+      ],
+      "subtowers" : [ "phoenix-lord" ]
     },
     {
       "path": "001",
       "name": "Intense Magic",
       "cost": 300,
       "buffs" : [
+        {
+          "type" : "pierce",
+          "operation" : "add",
+          "value" : 3,
+          "affectedAttacks" : [ "magic-bolt" ]
+        },
         {
           "type" : "pierce",
           "operation" : "add",
@@ -407,12 +457,41 @@
     {
       "path": "002",
       "name": "Monkey Sense",
-      "cost": 300
+      "cost": 300,
+      "buffs" : [
+        {
+          "type" : "camo",
+          "operation" : "set",
+          "value" : true,
+          "affectedAttacks" : [ "all" ]
+        }
+      ]
     },
     {
       "path": "003",
       "name": "Shimmer",
-      "cost": 1500
+      "cost": 1500,
+      "attacks" : [
+        {
+          "id" : "shimmer",
+          "name" : "Shimmer",
+          "properties" : {
+            "pierce" : 200,
+            "range" : {
+              "value" : 70,
+              "attribute" : "aoe"
+            },
+            "cooldown" : 1.5,
+            "camo" : true,
+            "ignoreObstacle" : true,
+            "debuff" : [
+              {
+                "debuffType" : "decamo"
+              }
+            ]
+          }
+        }
+      ]
     },
     {
       "path": "004",

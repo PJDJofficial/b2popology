@@ -1,0 +1,46 @@
+{
+  "name": "Phoenix Lord",
+  "id": "phoenix-lord",
+  "category" : "magic",
+  "properties": {},
+  "upgrades": [
+    {
+      "path": "000",
+      "name": "Base",
+      "cost": 0,
+      "attacks": [
+        {
+          "id": "flame",
+          "name": "Flame",
+          "properties": {
+            "damage": 55,
+            "pierce": 50,
+            "range": {
+              "attribute" : "infinite"
+            },
+            "cooldown": 0.1,
+            "damageType": "normal",
+            "camo" : true,
+            "ignoreObstacle" : true
+          }
+        },
+        {
+          "id": "meteor",
+          "name": "Meteor",
+          "properties": {
+            "damage": 50,
+            "projectiles" : [8, 360],
+            "pierce": 255,
+            "range": {
+              "attribute" : "infinite"
+            },
+            "cooldown": 1.0,
+            "damageType": "normal",
+            "camo" : true,
+            "ignoreObstacle" : true
+          }
+        }
+      ]
+    }
+  ]
+}
