@@ -20,32 +20,7 @@ export class Buff {
   }
 
   toHTML() {
-    const p = document.createElement('p');
-
-    p.className = 'property-footnote';
-
-    p.textContent = this.toString();
-
-    return p;
-  }
-
-  toString() {
-    let str = '*';
-
-    for (let i = 0; i < this.affectedAttacks.length; i++) {
-      str += ' ' + this.affectedAttacks[i]
-      if (i != this.affectedAttacks.length - 1) str + ','
-    }
-
-    str += ' attack';
-    if (this.affectedAttacks.length != 1) str += 's';
-    str += ' buffed, ';
-    if (this.operation == 'add') str += `+${this.value} ${this.type}`;
-    else if (this.operation == 'mul') str += `${this.type} multiplied by ${this.value}`;
-    else if (this.operation == 'div') str += `${this.type} divided by ${this.value}`;
-    else if (this.operation == 'set') str += `${this.type} set to ${this.value}`;
-
-    return str;
+    return this.toHTMLSimple();
   }
 
   toHTMLSimple() {
@@ -95,12 +70,8 @@ export class Buff {
       }
     }
 
-
     str += ' buffed: ';
-    if (this.operation == 'add') str += `+${this.value} ${this.type}`;
-    else if (this.operation == 'mul') str += `${this.type} multiplied by ${this.value}`;
-    else if (this.operation == 'div') str += `${this.type} divided by ${this.value}`;
-    else if (this.operation == 'set') str += `${this.type} set to ${this.value}`;
+    str += this.buffValueFormatted();
 
     li.textContent = str;
 
@@ -111,6 +82,31 @@ export class Buff {
     const li = document.createElement('li');
     li.textContent = this.value;
     return li;
+  }
+
+  buffValueFormatted() {
+    switch (this.type) {
+      case 'bonusDamage': return this.valueBonusDamage();
+      default: return this.valueDefault();
+    }
+  }
+
+  valueDefault() {
+    switch (this.operation) {
+      case 'add': return `+${this.value} ${this.type}`;
+      case 'mul': return `${this.type} multiplied by ${this.value}`;
+      case 'div': return `${this.type} divided by ${this.value}`;
+      case 'set': return `${this.type} set to ${this.value}`;
+    }
+  }
+
+  valueBonusDamage() {
+    let str = '';
+    Object.keys(this.value).forEach((key) => {
+      const buff = new Buff(`${key} damage`, this.operation, this.value[key]);
+      str += buff.valueDefault();
+    });
+    return str;
   }
 
 }

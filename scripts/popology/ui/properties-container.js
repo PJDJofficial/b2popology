@@ -1,3 +1,4 @@
+import { Buff } from "../classes/buff.js";
 import { PropertiesManager } from "../classes/properties/properties-manager.js";
 
 export class PropertiesContainer {
@@ -58,8 +59,14 @@ export class PropertiesContainer {
       else unkeyPropertiesContainer.append(propertyHTML);
     });
 
+    const buffObjects = [];
+
     [...majorProperties, ...this.children].forEach((property) => {
       if (property == null) return;
+      if (property instanceof Buff) {
+        buffObjects.push(property);
+        return;
+      }
       const propertiesHTML = property.toHTML(this.attack);
       if (propertiesHTML == null) return;
 
@@ -72,6 +79,12 @@ export class PropertiesContainer {
         rootContainer.append(propertyHTML);
       }
     });
+
+    if (buffObjects.length > 0) {
+      const buffList = document.createElement('ul');
+      rootContainer.append(buffList);
+      buffObjects.forEach(buff => buffList.append(buff.toHTML()));
+    }
 
     return rootContainer;
   }

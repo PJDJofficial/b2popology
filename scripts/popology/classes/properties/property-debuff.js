@@ -5,6 +5,8 @@ export class PropertyDebuff extends Property {
   static DEBUFF_FORMATTED = {
     "degrow" : "removes regrow modifier",
     "decamo" : "removes camo modifer",
+    "defort" : "removes fortified property",
+    "delead" : "removes lead property",
     "damage" : "bloons takes extra damage",
     "noImmunity" : "bloons lose damage type immunity"
   };

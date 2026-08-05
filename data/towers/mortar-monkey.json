@@ -60,6 +60,24 @@
           "operation" : "add",
           "value" : 12,
           "affectedAttacks" : [ "shell-explosion" ]
+        },
+        {
+          "type" : "pierce",
+          "operation" : "add",
+          "value" : 5,
+          "affectedAttacks" : [ "strip", "wof" ]
+        },
+        {
+          "type" : "blastRadius",
+          "operation" : "add",
+          "value" : 8,
+          "affectedAttacks" : [ "strip" ]
+        },
+        {
+          "type" : "range",
+          "operation" : "add",
+          "value" : 6,
+          "affectedAttacks" : [ "wof" ]
         }
       ]
     },
@@ -72,7 +90,7 @@
           "type" : "damage",
           "operation" : "add",
           "value" : 1,
-          "affectedAttacks" : [ "shell-explosion" ]
+          "affectedAttacks" : [ "shell-explosion", "wof" ]
         }
       ]
     },
@@ -337,7 +355,74 @@
     {
       "path": "050",
       "name": "Pop and Awe",
-      "cost": 27000
+      "cost": 27000,
+      "abilities" : [
+        {
+          "id" : "pop-and-awe",
+          "name" : "Pop and Awe",
+          "overwrites" : [ "bombardment" ],
+          "properties" : {
+            "cooldown" : 45,
+            "duration" : 10
+          },
+          "attacks" : [
+            {
+              "id" : "ppa-explosion",
+              "name" : "Stun Explosion",
+              "properties" : {
+                "damage" : 20,
+                "cooldown" : 1.0,
+                "pierce" : {
+                  "attribute" : "infinite"
+                },
+                "blastRadius" : {
+                  "attribute" : "infinite"
+                },
+                "damageType" : "normal",
+                "stun" : {
+                  "stunDurations" : {
+                    "bloons" : 1.0,
+                    "moab" : 1.0,
+                    "bfb" : 1.0,
+                    "zomg" : 1.0,
+                    "ddt" : 1.0
+                  }
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "buffs" : [
+        {
+          "type" : "bonusDamage",
+          "operation" : "add",
+          "value" : {
+            "ceram" : 9,
+            "moab" : 5,
+            "fort" : 2,
+            "lead" : 2,
+            "stun" : 7,
+            "bad" : 6
+          },
+          "affectedAttacks" : [ "shell-explosion" ]
+        }
+      ],
+      "externalBuffs" : [
+        {
+          "targets" : [ "Artillery Battery Mortars" ],
+          "buffs" : [
+            {
+              "type" : "bonusDamage",
+              "operation" : "add",
+              "value" : {
+                "bad" : 3
+              },
+              "affectedAttacks" : [ "shell-explosion" ]
+            }
+          ]
+        }
+      ]
     },
     {
       "path": "001",
@@ -347,22 +432,232 @@
     {
       "path": "002",
       "name": "Burny Stuff",
-      "cost": 500
+      "cost": 500,
+      "buffs" : [
+        {
+          "type" : "appendDoT",
+          "value" : {
+            "name" : "burn",
+            "properties" : {
+              "damage" : 1,
+              "damageType" : "fire",
+              "tickDuration" : 1.4,
+              "totalDuration" : 4.2
+            }
+          },
+          "affectedAttacks" : [ "shell-explosion" ],
+          "affectedPaths" : [ "all", "EX_300" ,"EX_400", "EX_500", "EX_004", "EX_005" ]
+        },
+        {
+          "type" : "appendDoT",
+          "value" : {
+            "name" : "burn",
+            "properties" : {
+              "damage" : 2,
+              "damageType" : "fire",
+              "tickDuration" : 0.625,
+              "totalDuration" : 1.875
+            }
+          },
+          "affectedAttacks" : [ "shell-explosion" ],
+          "affectedPaths" : [ "300" ]
+        },
+        {
+          "type" : "appendDoT",
+          "value" : {
+            "name" : "burn",
+            "properties" : {
+              "damage" : 5,
+              "damageType" : "fire",
+              "tickDuration" : 0.625,
+              "totalDuration" : 1.875
+            }
+          },
+          "affectedAttacks" : [ "shell-explosion" ],
+          "affectedPaths" : [ "400" ]
+        },
+        {
+          "type" : "appendDoT",
+          "value" : {
+            "name" : "burn",
+            "properties" : {
+              "damage" : 45,
+              "damageType" : "fire",
+              "tickDuration" : 0.625,
+              "totalDuration" : 1.875
+            }
+          },
+          "affectedAttacks" : [ "shell-explosion" ],
+          "affectedPaths" : [ "500" ]
+        },
+        {
+          "type" : "appendDoT",
+          "value" : {
+            "name" : "burn",
+            "properties" : {
+              "damage" : 5,
+              "damageType" : "fire",
+              "tickDuration" : 1.4,
+              "totalDuration" : 4.2
+            }
+          },
+          "affectedAttacks" : [ "shell-explosion" ],
+          "affectedPaths" : [ "004" ]
+        },
+        {
+          "type" : "appendDoT",
+          "value" : {
+            "name" : "burn",
+            "properties" : {
+              "damage" : 5,
+              "bonusDamage" : {
+                "moab" : 95
+              },
+              "damageType" : "fire",
+              "tickDuration" : 0.625,
+              "totalDuration" : 1.8
+            }
+          },
+          "affectedAttacks" : [ "shell-explosion" ],
+          "affectedPaths" : [ "005" ]
+        }
+      ]
     },
     {
       "path": "003",
       "name": "Signal Flare",
-      "cost": 700
+      "cost": 700,
+      "buffs" : [
+        {
+          "type" : "camo",
+          "operation" : "set",
+          "value" : true,
+          "affectedAttacks" : [ "all" ]
+        },
+        {
+          "type" : "appendAttack",
+          "value" : {
+            "id" : "flare",
+            "properties" : {
+              "pierce" : 55,
+              "blastRadius" : 50,
+              "debuff" : [
+                {
+                  "debuffType" : "decamo"
+                }
+              ],
+              "attackType" : "flare"
+            }
+          },
+          "affectedAttacks" : [ "shell" ]
+        },
+        {
+          "type" : "summonAttack",
+          "operation" : "append",
+          "value" : {
+            "attackId" : "flare",
+            "type" : [ "onExpiry" ]
+          },
+          "affectedAttacks" : [ "shell" ]
+        }
+      ]
     },
     {
       "path": "004",
       "name": "Shattering Shells",
-      "cost": 8500
+      "cost": 8500,
+      "buffs" : [
+        {
+          "type" : "appendAttack",
+          "value" : {
+            "id" : "strip",
+            "properties" : {
+              "pierce" : 40,
+              "blastRadius" : 20,
+              "debuff" : [
+                {
+                  "debuffType" : "degrow"
+                },
+                {
+                  "id" : "defortDebuff",
+                  "debuffType" : "defort",
+                  "debuffTarget" : "bloons, moabs, bfbs"
+                },
+                {
+                  "debuffType" : "delead"
+                }
+              ],
+              "attackType" : "strip"
+            }
+          },
+          "affectedAttacks" : [ "shell" ]
+        },
+        {
+          "type" : "summonAttack",
+          "operation" : "append",
+          "value" : {
+            "attackId" : "strip",
+            "type" : [ "onExpiry" ]
+          },
+          "affectedAttacks" : [ "shell" ]
+        }
+      ]
     },
     {
       "path": "005",
       "name": "Blooncineration",
-      "cost": 40000
+      "cost": 40000,
+      "buffs" : [
+        {
+          "type" : "damageType",
+          "operation" : "upgrade",
+          "value" : "normal",
+          "affectedAttacks" : [ "shell-explosion" ]
+        },
+        {
+          "type" : "debuff",
+          "operation" : "remove",
+          "value" : "defortDebuff",
+          "affectedAttacks" : [ "strip" ]
+        },
+        {
+          "type" : "debuff",
+          "operation" : "append",
+          "value" : {
+            "debuffTarget" : [ "non-BADs" ],
+            "debuffType" : "defort"
+          },
+          "affectedAttacks" : [ "strip" ]
+        },
+        {
+          "type" : "appendAttack",
+          "value" : {
+            "id" : "wof",
+            "properties" : {
+              "damage" : 4,
+              "pierce" : 40,
+              "range" : {
+                "attribute" : "aoe",
+                "value" : 15
+              },
+              "cooldown" : 0.1,
+              "damageType" : "normal",
+              "camo" : true,
+              "attackType" : "wall of fire"
+            }
+          },
+          "affectedAttacks" : [ "shell" ]
+        },
+        {
+          "type" : "summonAttack",
+          "operation" : "append",
+          "value" : {
+            "attackId" : "wof",
+            "type" : [ "trackExpiry" ]
+          },
+          "affectedAttacks" : [ "shell" ]
+        }
+      ]
     }
   ]
 }

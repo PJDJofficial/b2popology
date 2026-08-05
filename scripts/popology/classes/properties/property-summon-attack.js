@@ -51,6 +51,7 @@ export class PropertySummonAttack extends Property {
       case 'onFirstHit': return 'on first hit';
       case 'onBounce': return 'on every bounce';
       case 'track': return 'on the closest point on track';
+      case 'trackExpiry': return 'on track where the attack expired';
       default: return `ERROR add type ${type} to summonAttack property`;
     }
   }
