@@ -202,7 +202,7 @@
         {
           "type": "cooldown",
           "operation": "mul",
-          "value": 0.78,
+          "value": 0.82,
           "affectedAttacks": [
             "all"
           ]
@@ -234,14 +234,6 @@
           "type": "damage",
           "operation": "add",
           "value": 2,
-          "affectedAttacks": [
-            "all"
-          ]
-        },
-        {
-          "type": "cooldown",
-          "operation": "mul",
-          "value": 0.75,
           "affectedAttacks": [
             "all"
           ]
@@ -295,7 +287,7 @@
           ],
           "properties": {
             "cooldown": 50,
-            "duration": 15,
+            "duration": 12,
             "desc": [
               "transforms the 20 nearest untransformed dart monkeys within 50 radius (up to 2-4-2) into superfans",
               "if limit isn't reached, also transforms newly placed dart monkeys until reached",

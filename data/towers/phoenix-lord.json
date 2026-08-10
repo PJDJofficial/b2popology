@@ -14,6 +14,9 @@
           "name": "Flame",
           "properties": {
             "damage": 55,
+            "bonusDamage" : {
+              "fort" : 15
+            },
             "pierce": 50,
             "range": {
               "attribute" : "infinite"
@@ -29,6 +32,9 @@
           "name": "Meteor",
           "properties": {
             "damage": 50,
+            "bonusDamage" : {
+              "fort" : 15
+            },
             "projectiles" : [8, 360],
             "pierce": 255,
             "range": {

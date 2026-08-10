@@ -203,7 +203,7 @@
             "id" : "super-brittle",
             "debuffType" : "damage",
             "debuffValue" : 4,
-            "debuffDuration" : 2.0,
+            "debuffDuration" : 3.0,
             "cantStack" : [ "brittle" ]
           },
           "affectedAttacks" : [ "freeze" ]
