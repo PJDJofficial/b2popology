@@ -79,6 +79,10 @@ export class PropertiesManager {
     "summonAttack" : PropertySummonAttack
   };
 
+  static priority = [
+    'damage', 'pierce', 'impactPierce', 'range', 'blastRadius', 'cooldown', 'projectiles', 'damageType'
+  ];
+
   static propertiesFromData(data) {
     const properties = [];
 
@@ -144,12 +148,27 @@ export class PropertiesManager {
 
     switch (group) {
       case 'minor':
-        return minorProperties;
+        return PropertiesManager.sortArray(minorProperties);
       case 'major':
-        return majorProperties;
+        return PropertiesManager.sortArray(majorProperties);
       case 'unkey':
-        return unkeyProperties;
+        return PropertiesManager.sortArray(unkeyProperties);
     }
+  }
+
+  static sortArray(array) {
+    const newArray = [];
+    PropertiesManager.priority.forEach((prio) => {
+      array.forEach((property) => {
+        if (property.key == prio) newArray.push(property);
+      });
+    });
+
+    array.forEach((property) => {
+      if (!PropertiesManager.priority.includes(property.key)) newArray.push(property);
+    });
+
+    return newArray;
   }
 
 }

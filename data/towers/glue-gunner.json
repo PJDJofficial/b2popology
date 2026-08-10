@@ -13,17 +13,69 @@
     {
       "path": "000",
       "name": "Base",
-      "cost": 100
+      "cost": 100,
+      "attacks" : [
+        {
+          "id" : "glue",
+          "name" : "Glue",
+          "properties" : {
+            "pierce" : 1,
+            "range" : 36,
+            "cooldown" : 0.9,
+            "glue" : {
+              "duration" : 11,
+              "soak" : 3,
+              "slowBloon" : 0.5
+            },
+            "cantTarget" : [ "blimps" ]
+          }
+        }
+      ]
     },
     {
       "path": "100",
       "name": "Glue Soak",
-      "cost": 150
+      "cost": 150,
+      "buffs" : [
+        {
+          "type" : "glue",
+          "operation" : "setChild",
+          "value" : {
+            "soak" : {
+              "attribute" : "infinite"
+            }
+          },
+          "affectedAttacks" : [ "glue" ]
+        }
+      ]
     },
     {
       "path": "200",
       "name": "Corrosive Glue",
-      "cost": 500
+      "cost": 500,
+      "buffs" : [
+        {
+          "type" : "cantTarget",
+          "operation" : "remove",
+          "value" : "blimps",
+          "affectedAttacks" : [ "glue" ]
+        },
+        {
+          "type" : "glue",
+          "operation" : "setChild",
+          "value" : {
+            "dot" : {
+              "name" : "corrsive glue",
+              "properties" : {
+                "damage" : 1,
+                "damageType" : "normal",
+                "tickDuration" : 2.0
+              }
+            }
+          },
+          "affectedAttacks" : [ "glue" ]
+        }
+      ]
     },
     {
       "path": "300",
