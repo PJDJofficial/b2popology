@@ -80,7 +80,7 @@ export class PropertiesManager {
   };
 
   static priority = [
-    'damage', 'pierce', 'impactPierce', 'range', 'blastRadius', 'cooldown', 'projectiles', 'damageType'
+    'damage', 'pierce', 'impactPierce', 'range', 'blastRadius', 'cooldown', 'duration', 'initialCooldown', 'projectiles', 'damageType'
   ];
 
   static propertiesFromData(data) {

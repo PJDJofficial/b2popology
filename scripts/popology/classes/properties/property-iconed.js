@@ -8,7 +8,8 @@ export class PropertyIconed extends Property {
     "placement" : "Placable on",
     "unlockCost" : "Unlock Price",
     "cost" : "Total Cost",
-    "size" : "Size"
+    "size" : "Size",
+    "intelRange" : "Intel Range"
   }
 
   clone() {
