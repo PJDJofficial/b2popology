@@ -20,12 +20,13 @@
           "name" : "Glue",
           "properties" : {
             "pierce" : 1,
-            "range" : 36,
+            "range" : 46,
             "cooldown" : 0.9,
             "glue" : {
               "duration" : 11,
               "soak" : 3,
-              "slowBloon" : 0.5
+              "slowBloons" : 0.5,
+              "slowBlimps" : 0.0
             },
             "cantTarget" : [ "blimps" ]
           }
@@ -39,13 +40,14 @@
       "buffs" : [
         {
           "type" : "glue",
-          "operation" : "setChild",
+          "operation" : "set",
           "value" : {
             "soak" : {
               "attribute" : "infinite"
             }
           },
-          "affectedAttacks" : [ "glue" ]
+          "affectedAttacks" : [ "glue", "splat" ],
+          "affectedAbilities"  :[ "glue-strike", "glue-storm" ]
         }
       ]
     },
@@ -58,14 +60,16 @@
           "type" : "cantTarget",
           "operation" : "remove",
           "value" : "blimps",
-          "affectedAttacks" : [ "glue" ]
+          "affectedAttacks" : [ "glue", "glue-bomb" ],
+          "affectedAbilities"  :[ "glue-strike", "glue-storm" ]
         },
         {
           "type" : "glue",
-          "operation" : "setChild",
+          "operation" : "set",
           "value" : {
+            "durationBlimps" : 5.5,
             "dot" : {
-              "name" : "corrsive glue",
+              "name" : "corrosive glue",
               "properties" : {
                 "damage" : 1,
                 "damageType" : "normal",
@@ -73,19 +77,136 @@
               }
             }
           },
-          "affectedAttacks" : [ "glue" ]
+          "affectedAttacks" : [ "glue", "splat" ],
+          "affectedAbilities" : [ "glue-strike", "glue-storm" ]
+        },
+        {
+          "type" : "glue",
+          "operation" : "set",
+          "value" : {
+            "durationBlimps" : 11
+          },
+          "affectedAbilities" : [ "glue-storm" ]
+        },
+        {
+          "type" : "glue",
+          "operation" : "merge",
+          "value" : {
+            "debuff" : {
+              "debuffType" : "delead",
+              "debuffDuration" : 5.5,
+              "debuffTarget" : [ "blimps" ]
+            }
+          }
+          ,
+          "affectedAbilities" : [ "glue-strike" ]
+        },
+        {
+          "type" : "glue",
+          "operation" : "merge",
+          "value" : {
+            "debuff" : {
+              "debuffType" : "delead",
+              "debuffDuration" : 11,
+              "debuffTarget" : [ "blimps" ]
+            }
+          }
+          ,
+          "affectedAbilities" : [ "glue-storm" ]
+        },
+        {
+          "type" : "glue",
+          "operation" : "merge",
+          "value" : {
+            "debuff" : {
+              "debuffType" : "damage",
+              "debuffDuration" : 5.5,
+              "debuffValue" : 2,
+              "debuffTarget" : [ "blimps" ]
+            }
+          }
+          ,
+          "affectedAbilities" : [ "glue-strike" ]
+        },
+        {
+          "type" : "glue",
+          "operation" : "merge",
+          "value" : {
+            "debuff" : {
+              "debuffType" : "damage",
+              "debuffDuration" : 11,
+              "debuffValue" : 3,
+              "debuffTarget" : [ "blimps" ]
+            }
+          }
+          ,
+          "affectedAbilities" : [ "glue-storm" ]
         }
       ]
     },
     {
       "path": "300",
       "name": "Bloon Dissolver",
-      "cost": 2300
+      "cost": 2300,
+      "buffs" : [
+        {
+          "type" : "glue",
+          "operation" : "set",
+          "value" : {
+            "dot" : {
+              "name" : "corrosive glue",
+              "properties" : {
+                "damage" : 1,
+                "bonusDamage" : {
+                  "ceram" : 1,
+                  "moab" : 1
+                },
+                "damageType" : "normal",
+                "tickDuration" : 0.575
+              }
+            }
+          },
+          "affectedAttacks" : [ "glue", "splat" ]
+        }
+      ]
     },
     {
       "path": "400",
       "name": "Bloon Liquefier",
-      "cost": 4500
+      "cost": 4500,
+      "buffs" : [
+        {
+          "type" : "pierce",
+          "operation" : "add",
+          "value" :  1,
+          "affectedAttacks" : [ "glue", "splat" ]
+        },
+        {
+          "type" : "cooldown",
+          "operation" : "mul",
+          "value" :  0.7222,
+          "affectedAttacks" : [ "glue", "glue-bomb" ]
+        },
+        {
+          "type" : "glue",
+          "operation" : "set",
+          "value" : {
+            "dot" : {
+              "name" : "corrosive glue",
+              "properties" : {
+                "damage" : 1,
+                "bonusDamage" : {
+                  "ceram" : 1,
+                  "moab" : 1
+                },
+                "damageType" : "normal",
+                "tickDuration" : 0.1
+              }
+            }
+          },
+          "affectedAttacks" : [ "glue", "splat" ]
+        }
+      ]
     },
     {
       "path": "500",
@@ -95,52 +216,298 @@
     {
       "path": "010",
       "name": "Bigger Globs",
-      "cost": 100
+      "cost": 100,
+      "buffs" : [
+        {
+          "type" : "pierce",
+          "operation" : "add",
+          "value" :  1,
+          "affectedAttacks" : [ "glue", "stun-splat" ]
+        }
+      ]
     },
     {
       "path": "020",
       "name": "Glue Splatter",
-      "cost": 700
+      "cost": 700,
+      "attacks" : [
+        {
+          "id" : "glue-bomb",
+          "name" : "Glue Bomb",
+          "overwrites" : [ "glue" ],
+          "properties" : {
+            "range" : 46,
+            "cooldown" : 0.9,
+            "summonAttack" : [
+              {
+                "attackId" : "splat",
+                "type" : [ "onContact" ]
+              }
+            ],
+            "embeddedAttacks" : [
+              {
+                "id" : "splat",
+                "properties" : {
+                  "pierce" : 9,
+                  "blastRadius" : 13,
+                  "glue" : {
+                    "duration" : 11,
+                    "soak" : 3,
+                    "slowBloons" : 0.5,
+                    "slowBlimps" : 0.0
+                  },
+                  "damageType" : "normal",
+                  "attackType" : "splat"
+                }
+              }
+            ],
+            "cantTarget" : [ "blimps" ]
+          }
+        }
+      ],
+      "buffs" : [
+        {
+          "type" : "pierce",
+          "operation" : "add",
+          "value" :  1,
+          "affectedAttacks" : [ "stun-splat" ]
+        }
+      ]
     },
     {
       "path": "030",
       "name": "Glue Hose",
-      "cost": 2200
+      "cost": 2200,
+      "buffs" : [
+        {
+          "type" : "cooldown",
+          "operation" : "mul",
+          "value" :  0.34,
+          "affectedAttacks" : [ "glue-bomb" ]
+        }
+      ]
     },
     {
       "path": "040",
       "name": "Glue Strike",
-      "cost": 4000
+      "cost": 4000,
+      "abilities" : [
+        {
+          "id" : "glue-strike",
+          "name" : "Glue Strike",
+          "properties" : {
+            "cooldown" : 40,
+            "pierce" : { "attribute" : "infinite" },
+            "blastRadius" : { "attribute" : "infinite" },
+            "cantTarget" : [ "blimps" ],
+            "glue" : {
+              "duration" : 11,
+              "soak" : 6,
+              "slowBloons" : 0.5,
+              "slowBlimps" : 0.0,
+              "debuff" : [
+                {
+                  "debuffType" : "delead",
+                  "debuffDuration" : 11,
+                  "debuffTarget" : [ "bloons" ]
+                },
+                {
+                  "debuffType" : "damage",
+                  "debuffDuration" : 11,
+                  "debuffValue" : 2,
+                  "debuffTarget" : [ "bloons" ]
+                }
+              ]
+            }
+          }
+        }
+      ]
     },
     {
       "path": "050",
       "name": "Glue Storm",
-      "cost": 18000
+      "cost": 18000,
+      "abilities" : [
+        {
+          "id" : "glue-storm",
+          "name" : "Glue Storm",
+          "overwrites" : [ "glue-strike" ],
+          "properties" : {
+            "cooldown" : 40,
+            "duration" : 15,
+            "attackFrequency" : 2.0,
+            "camo" : true,
+            "pierce" : { "attribute" : "infinite" },
+            "blastRadius" : { "attribute" : "infinite" },
+            "cantTarget" : [ "blimps" ],
+            "glue" : {
+              "duration" : 22,
+              "soak" : 9,
+              "slowBloons" : 0.75,
+              "slowBlimps" : 0.0,
+              "debuff" : [
+                {
+                  "debuffType" : "delead",
+                  "debuffDuration" : 22,
+                  "debuffTarget" : [ "bloons" ]
+                },
+                {
+                  "debuffType" : "damage",
+                  "debuffDuration" : 22,
+                  "debuffValue" : 3,
+                  "debuffTarget" : [ "bloons" ]
+                }
+              ]
+            }
+          }
+        }
+      ]
     },
     {
       "path": "001",
       "name": "Stickier Glue",
-      "cost": 120
+      "cost": 120,
+      "buffs" : [
+        {
+          "type" : "glue",
+          "operation" : "add",
+          "value" : {
+            "duration" : 13
+          },
+          "affectedAttacks" : [ "glue", "splat" ],
+          "affectedAbilities" : [ "glue-strike" ]
+        },
+        {
+          "type" : "glue",
+          "operation" : "add",
+          "value" : {
+            "duration" : 26
+          },
+          "affectedAbilities" : [ "glue-storm" ]
+        }
+      ]
     },
     {
       "path": "002",
       "name": "Stronger Glue",
-      "cost": 400
+      "cost": 400,
+      "buffs" : [
+        {
+          "type" : "glue",
+          "operation" : "set",
+          "value" : {
+            "slowBloons" : 0.75
+          },
+          "affectedAttacks" : [ "glue", "splat" ],
+          "affectedAbilities" : [ "glue-strike" ]
+        },
+        {
+          "type" : "glue",
+          "operation" : "set",
+          "value" : {
+            "slowBloons" : 0.9
+          },
+          "affectedAbilities" : [ "glue-storm" ]
+        }
+      ]
     },
     {
       "path": "003",
       "name": "MOAB Glue",
-      "cost": 3200
+      "cost": 3200,
+      "buffs" : [
+        {
+          "type" : "cantTarget",
+          "operation" : "remove",
+          "value" : "blimps",
+          "affectedAttacks" : [ "glue", "glue-bomb" ]
+        },
+        {
+          "type" : "glue",
+          "operation" : "set",
+          "value" : {
+            "durationBlimps" : 12,
+            "slowBlimps" : 0.375
+          },
+          "affectedAttacks" : [ "glue", "splat" ]
+        }
+      ]
     },
     {
       "path": "004",
       "name": "Relentless Glue",
-      "cost": 3000
+      "cost": 3000,
+      "buffs" : [
+        {
+          "type" : "camo",
+          "operation" : "set",
+          "value" : true,
+          "affectedAttacks" : [ "glue", "glue-bomb" ]
+        },
+        {
+          "type" : "appendAttack",
+          "value" : {
+            "id" : "stun-splat",
+            "properties" : {
+              "pierce" : 4,
+              "blastRadius" : 12,
+              "stun" : {
+                "stunDurations" : {
+                  "moab" : 1.0,
+                  "bfb"  : 0.2,
+                  "zomg" : 0.06,
+                  "ddt" : 0.35
+                },
+                "canReapply" : true
+              },
+              "attackType" : "stun splat"
+            }
+          },
+          "affectedAttacks" : [ "glue", "glue-bomb" ]
+        },
+        {
+          "type" : "summonAttack",
+          "operation" : "append",
+          "value" : {
+            "attackId" : "stun-splat",
+            "type" : [ "onPop" ]
+          },
+          "affectedAttacks" : [ "glue", "glue-bomb" ]
+        }
+      ]
     },
     {
       "path": "005",
       "name": "Super Glue",
-      "cost": 28000
+      "cost": 28000,
+      "buffs" : [
+        {
+          "type" : "pierce",
+          "operation" : "add",
+          "value" :  1,
+          "affectedAttacks" : [ "glue" ]
+        },
+        {
+          "type" : "bonusDamage",
+          "operation" : "set",
+          "value" :  {
+            "moab" : 50
+          },
+          "affectedAttacks" : [ "glue", "glue-bomb" ]
+        },
+        {
+          "type" : "glue",
+          "operation" : "set",
+          "value" : {
+            "slowBloons" : 1.0,
+            "slowMoab" : 1.0,
+            "slowDdt" : 1.0,
+            "slowBfb" : 0.95,
+            "slowZomg" : 0.9
+          },
+          "affectedAttacks" : [ "glue", "splat" ]
+        }
+      ]
     }
   ]
 }

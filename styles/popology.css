@@ -4,6 +4,7 @@
   --background-thirdary: #EEEEEE;
   --background-red: #DDAAAA;
   --background-purple: #CC99CC;
+  --background-yellow: #999955;
   --header-primary: #000000;
   --header-secondary: #222222;
   --text-common: #000000;
@@ -33,6 +34,7 @@
     --background-thirdary: #555555;
     --background-purple: #664B66;
     --background-red: #665252;
+    --background-yellow: #555533;
     --header-primary: #FFFFFF;
     --header-secondary: #BBBBBB;
     --text-common: #FFFFFF;

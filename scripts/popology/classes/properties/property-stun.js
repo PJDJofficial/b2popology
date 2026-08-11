@@ -13,7 +13,7 @@ export class PropertyStun extends Property {
     const properties = [];
 
     Object.keys(this.val.stunDurations).forEach((key) => {
-      const iconedProperty = new PropertyIconedUnkeyed(key, `${parseFloat(this.val.stunDurations[key]).toFixed(1)}s`);
+      const iconedProperty = new PropertyIconedUnkeyed(key, `${Math.round(this.val.stunDurations[key] * 100) / 100}s`);
       properties.push(iconedProperty);
     });
 

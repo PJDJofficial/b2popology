@@ -5,7 +5,8 @@ export class DoT {
 
   static COLORS = {
     "burn" : "red",
-    "shred" : "purple"
+    "shred" : "purple",
+    "corrosive glue" : "yellow"
   }
 
   constructor(name, properties, metadata) {

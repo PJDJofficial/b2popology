@@ -16,12 +16,14 @@ import { PropertyDoT } from './property-dot.js';
 import { PropertyExternalBuffs } from './property-external-buffs.js';
 import { PropertyFootnote } from './property-footnote.js';
 import { PropertyFreeze } from './property-freeze.js';
+import { PropertyGlue } from './property-glue.js';
 import { PropertyHidden } from './property-hidden.js';
 import { PropertyIconed } from './property-iconed.js';
 import { PropertyIgnoreObstacle } from './property-ignore-obstacle.js';
 import { PropertyKnockback } from './property-knockback.js';
 import { PropertyPercentage } from './property-percentage.js';
 import { PropertyProjectiles } from './property-projectiles.js';
+import { PropertySoak } from './property-soak.js';
 import { PropertyStun } from './property-stun.js';
 import { PropertySummonAttack } from './property-summon-attack.js';
 import { PropertyTime } from './property-time.js';
@@ -54,11 +56,13 @@ export class PropertiesManager {
     "cooldown": PropertyTime,
     "initialCooldown" : PropertyTime,
     "duration": PropertyTime,
+    "durationBlimps" : PropertyTime,
     "durationWeak": PropertyTime,
     "tickDuration": PropertyTime,
     "totalDuration": PropertyTime,
     "domStun": PropertyTime,
     "rehit": PropertyTime,
+    "attackFrequency" : PropertyTime,
 
     "damageType": PropertyDamageType,
     "knockback": PropertyKnockback,
@@ -71,16 +75,21 @@ export class PropertiesManager {
     "permaSlow": PropertyPercentage,
     "permaSlowBlimps": PropertyPercentage,
     "areaSlow": PropertyPercentage,
+    "slowBloons" : PropertyPercentage,
+    "slowBlimps" : PropertyPercentage,
 
     "debuff": PropertyDebuff,
 
     "attackType" : PropertyHidden,
 
-    "summonAttack" : PropertySummonAttack
+    "summonAttack" : PropertySummonAttack,
+
+    "glue" : PropertyGlue,
+    "soak" : PropertySoak
   };
 
   static priority = [
-    'damage', 'pierce', 'impactPierce', 'range', 'blastRadius', 'cooldown', 'duration', 'initialCooldown', 'projectiles', 'damageType'
+    'cooldown', 'duration', 'initialCooldown', 'damage', 'pierce', 'impactPierce', 'range', 'blastRadius', 'durationBlimps', , 'projectiles', 'damageType'
   ];
 
   static propertiesFromData(data) {
@@ -139,7 +148,7 @@ export class PropertiesManager {
     properties.forEach((property) => {
       if (property instanceof PropertyHidden) return;
       if (
-        ['notes', 'desc', 'summonAttack', 'knockback', 'debuff', 'stun', 'freeze', 'externalBuffs'].includes(property.key) ||
+        ['notes', 'desc', 'summonAttack', 'knockback', 'debuff', 'stun', 'freeze', 'externalBuffs', 'glue'].includes(property.key) ||
         property instanceof PropertyDoT
       ) majorProperties.push(property);
       else if (property instanceof PropertyUnkeyed) unkeyProperties.push(property);
