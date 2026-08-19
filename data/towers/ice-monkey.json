@@ -296,8 +296,8 @@
           "id" : "snowstorm",
           "name" : "Snowstorm",
           "properties" : {
-            "cooldown" : 30,
-            "duration" : 8,
+            "abilityCooldown" : 30,
+            "abilityDuration" : 8,
             "damage" : 1,
             "pierce" : {
               "attribute" : "infinite"
@@ -339,8 +339,8 @@
           "name" : "Absolute Zero",
           "overwrites" : "snowstorm",
           "properties" : {
-            "cooldown" : 20,
-            "duration" : 12,
+            "abilityCooldown" : 20,
+            "abilityDuration" : 12,
             "damage" : 1,
             "pierce" : {
               "attribute" : "infinite"

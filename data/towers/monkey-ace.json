@@ -324,7 +324,7 @@
           "id" : "ground-zero",
           "name" : "Ground Zero",
           "properties" : {
-            "cooldown" : 35
+            "abilityCooldown" : 35
           },
           "attacks" : [
             {
@@ -369,7 +369,7 @@
           "name" : "Tsar Bomba",
           "overwrites" : [ "ground-zero" ],
           "properties" : {
-            "cooldown" : 35
+            "abilityCooldown" : 35
           },
           "attacks" : [
             {

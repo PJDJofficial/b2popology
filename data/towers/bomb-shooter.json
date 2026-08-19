@@ -367,7 +367,7 @@
           "id": "assasinate",
           "name" : "Assasinate",
           "properties" : {
-            "cooldown" : 30
+            "abilityCooldown" : 30
           },
           "attacks" : [
             {
@@ -433,7 +433,7 @@
           "name" : "Eliminate",
           "overwrites" : [ "assasinate" ],
           "properties" : {
-            "cooldown" : 10
+            "abilityCooldown" : 10
           },
           "attacks" :
           [

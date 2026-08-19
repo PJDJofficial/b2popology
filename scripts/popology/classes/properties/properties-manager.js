@@ -54,8 +54,10 @@ export class PropertiesManager {
     "projectiles": PropertyProjectiles,
 
     "cooldown": PropertyTime,
+    "abilityCooldown" : PropertyTime,
     "initialCooldown" : PropertyTime,
     "duration": PropertyTime,
+    "abilityDuration": PropertyTime,
     "durationBlimps" : PropertyTime,
     "durationWeak": PropertyTime,
     "tickDuration": PropertyTime,
@@ -89,7 +91,7 @@ export class PropertiesManager {
   };
 
   static priority = [
-    'cooldown', 'duration', 'initialCooldown', 'damage', 'pierce', 'impactPierce', 'range', 'blastRadius', 'durationBlimps', , 'projectiles', 'damageType'
+    'abilityCooldown', 'abilityDuration', 'initialCooldown', 'damage', 'pierce', 'impactPierce', 'range', 'cooldown', 'duration', 'blastRadius', 'durationBlimps', , 'projectiles', 'damageType'
   ];
 
   static propertiesFromData(data) {

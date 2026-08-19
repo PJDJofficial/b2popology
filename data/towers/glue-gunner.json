@@ -296,7 +296,7 @@
           "id" : "glue-strike",
           "name" : "Glue Strike",
           "properties" : {
-            "cooldown" : 40,
+            "abilityCooldown" : 40,
             "pierce" : { "attribute" : "infinite" },
             "blastRadius" : { "attribute" : "infinite" },
             "cantTarget" : [ "blimps" ],
@@ -333,9 +333,9 @@
           "name" : "Glue Storm",
           "overwrites" : [ "glue-strike" ],
           "properties" : {
-            "cooldown" : 40,
-            "duration" : 15,
-            "attackFrequency" : 2.0,
+            "abilityCooldown" : 40,
+            "abilityDuration" : 15,
+            "cooldown" : 2.0,
             "camo" : true,
             "pierce" : { "attribute" : "infinite" },
             "blastRadius" : { "attribute" : "infinite" },

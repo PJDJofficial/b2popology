@@ -316,8 +316,8 @@
           "id": "turbocharge",
           "name": "Turbo Charge",
           "properties": {
-            "cooldown": 45,
-            "duration": 8
+            "abilityCooldown": 45,
+            "abilityDuration": 8
           },
           "buffs" : [
             {
@@ -378,8 +378,8 @@
             "turbocharge"
           ],
           "properties": {
-            "cooldown": 40,
-            "duration": 15
+            "abilityCooldown": 40,
+            "abilityDuration": 15
           },
           "buffs" : [
             {

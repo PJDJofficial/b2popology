@@ -244,8 +244,8 @@
           "id": "fan-club",
           "name": "Super Monkey Fan Club",
           "properties": {
-            "cooldown": 50,
-            "duration": 12,
+            "abilityCooldown": 50,
+            "abilityDuration": 12,
             "desc": [
               "transforms the 10 nearest untransformed dart monkeys within 50 radius (up to 2-4-2) into superfans",
               "if limit isn't reached, also transforms newly placed dart monkeys until reached",
@@ -286,8 +286,8 @@
             "fan-club"
           ],
           "properties": {
-            "cooldown": 50,
-            "duration": 12,
+            "abilityCooldown": 50,
+            "abilityDuration": 12,
             "desc": [
               "transforms the 20 nearest untransformed dart monkeys within 50 radius (up to 2-4-2) into superfans",
               "if limit isn't reached, also transforms newly placed dart monkeys until reached",

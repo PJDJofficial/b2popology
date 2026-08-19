@@ -8,13 +8,28 @@
       18,
       18
     ],
-    "placement": 0
+    "placement": 0,
+    "intelRange" : 22
   },
   "upgrades": [
     {
       "path": "000",
       "name": "Base",
-      "cost": 800
+      "cost": 800,
+      "attacks" : [
+        {
+          "id" : "dart",
+          "name" : "Dart",
+          "properties" : {
+            "damage" : 1,
+            "projectiles" : 2,
+            "pierce" : 3,
+            "range" : 42,
+            "cooldown" : 0.53,
+            "damageType" : "sharp"
+          }
+        }
+      ]
     },
     {
       "path": "100",

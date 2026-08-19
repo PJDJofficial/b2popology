@@ -287,8 +287,8 @@
           "id": "maelstrom",
           "name": "Maelstrom",
           "properties": {
-            "cooldown": 20,
-            "duration": 3
+            "abilityCooldown": 20,
+            "abilityDuration": 3
           },
 		  "attacks" : [
 			{
@@ -332,8 +332,8 @@
             "maelstrom"
           ],
           "properties": {
-            "cooldown": 20,
-            "duration": 9
+            "abilityCooldown": 20,
+            "abilityDuration": 9
           },
 		  "attacks" : [
 			{

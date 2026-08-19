@@ -338,8 +338,8 @@
           "id" : "bombardment",
           "name" : "Bombardment",
           "properties" : {
-            "cooldown" : 60,
-            "duration" : 7
+            "abilityCooldown" : 60,
+            "abilityDuration" : 7
           },
           "buffs" : [
             {
@@ -362,8 +362,8 @@
           "name" : "Pop and Awe",
           "overwrites" : [ "bombardment" ],
           "properties" : {
-            "cooldown" : 45,
-            "duration" : 10
+            "abilityCooldown" : 45,
+            "abilityDuration" : 10
           },
           "attacks" : [
             {

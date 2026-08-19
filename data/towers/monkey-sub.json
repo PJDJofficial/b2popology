@@ -300,7 +300,7 @@
           "id" : "first-strike",
           "name" : "First Strike",
           "properties" : {
-            "cooldown" : 60,
+            "abilityCooldown" : 60,
             "damage" : 7000,
             "range" : { "attribute" : "infinite" },
             "damageType" : "normal",
@@ -342,7 +342,6 @@
             "damage": 1000,
             "damageType" : "normal",
             "camo" : true,
-            "battleReady" : false,
             "desc": ["triggered by a blimp entering the map"]
           }
         }

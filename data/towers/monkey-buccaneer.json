@@ -222,7 +222,7 @@
           "id" : "takedown",
           "name" : "Takedown",
           "properties" : {
-            "cooldown" : 30,
+            "abilityCooldown" : 30,
             "range" : {
               "attribute" : "infinite"
             },
@@ -244,7 +244,7 @@
           "name" : "ZOMG Takedown",
           "overwrites" : [ "takedown" ],
           "properties" : {
-            "cooldown" : 30,
+            "abilityCooldown" : 30,
             "range" : {
               "attribute" : "infinite"
             },
