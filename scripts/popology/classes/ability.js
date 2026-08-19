@@ -59,7 +59,7 @@ export class Ability {
       attack.addFlag('noHeader');
       attack.addFlag('thirdaryBackground')
       let str = '';
-      if (this.properties.find(property => property.key == 'duration') != null) {
+      if (this.properties.find(property => property.key == 'abilityDuration') != null) {
         str = `Activates ${attack.name} attack for the duration of the ability`;
       }
       else str = `Launches a single ${attack.name} attack`;

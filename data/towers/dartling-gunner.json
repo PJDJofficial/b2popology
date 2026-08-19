@@ -7,13 +7,26 @@
     "size": [
       8
     ],
-    "placement": 0
+    "placement": 0,
+    "intelRange" : 20
   },
   "upgrades": [
     {
       "path": "000",
       "name": "Base",
-      "cost": 800
+      "cost": 800,
+      "attacks" : [
+        {
+          "id" : "dart",
+          "name" : "Dart",
+          "properties" : {
+            "damage" : 1,
+            "pierce" : 2,
+            "cooldown" : 0.2,
+            "damageType" : "sharp"
+          }
+        }
+      ]
     },
     {
       "path": "100",
@@ -43,22 +56,106 @@
     {
       "path": "010",
       "name": "Advanced Targeting",
-      "cost": 250
+      "cost": 250,
+      "buffs" : [
+        {
+          "type" : "camo",
+          "operation" : "set",
+          "value" : true,
+          "affectedAttacks" : [ "all" ]
+        }
+      ]
     },
     {
       "path": "020",
       "name": "Faster Barrel Spin",
-      "cost": 500
+      "cost": 500,
+      "buffs" : [
+        {
+          "type" : "cooldown",
+          "operation" : "mul",
+          "value" : 0.584,
+          "affectedAttacks" : [ "dart", "rocket", "laser" ]
+        }
+      ]
     },
     {
       "path": "030",
       "name": "Hydra Rocket Pods",
-      "cost": 5100
+      "cost": 5100,
+      "attacks" : [
+        {
+          "id" : "rocket",
+          "name" : "Rocket",
+          "overwrites" : [ "dart" ],
+          "properties" : {
+            "impactPierce" : 3,
+            "cooldown" : 0.132,
+            "summonAttack" : [
+              {
+                "attackId" : "rocket-explosion",
+                "type" : [ "onContact" ]
+              }
+            ],
+            "embeddedAttacks" : [
+              {
+                "id" : "rocket-explosion",
+                "properties" : {
+                  "damage" : 1,
+                  "pierce" : 6,
+                  "blastRadius" : 8,
+                  "damageType" : "normal",
+                  "attackType" : "explosion"
+                }
+              }
+            ]
+          }
+        }
+      ]
     },
     {
       "path": "040",
       "name": "Rocket Storm",
-      "cost": 5500
+      "cost": 5500,
+      "abilities" : [
+        {
+          "id" : "rocket-storm",
+          "name" : "Rocket Storm",
+          "properties" : {
+            "abilityCooldown" : 40,
+            "abilityDuration" : 8
+          },
+          "attacks" : [
+            {
+              "id" : "rstorm",
+              "name": "Rocket Storm",
+              "properties" : {
+                "impactPierce" : 1,
+                "projectiles" : 10,
+                "cooldown" : 0.5,
+                "summonAttack" : [
+                  {
+                    "attackId" : "rstorm-explosion",
+                    "type" : [ "onContact" ]
+                  }
+                ],
+                "embeddedAttacks" : [
+                  {
+                    "id" : "rstorm-explosion",
+                    "properties" : {
+                      "damage" : 5,
+                      "pierce" : 7,
+                      "blastRadius" : 8,
+                      "damageType" : "normal",
+                      "attackType" : "explosion"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
     },
     {
       "path": "050",
