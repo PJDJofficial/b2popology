@@ -204,22 +204,15 @@ export class Tower {
           removedAttacks.push(...upgrade.metadata.removeAttacks);
         if (upgrade.attacks == null) return;
         upgrade.attacks.forEach((attack) => {
+          if (attack.overwrites != null && attack.overwrites.length > 0) removedAttacks.push(...attack.overwrites);
           attacks.push(attack);
         });
       }
     });
 
     const filteredAttacks = [];
-    let flag;
     for (let i = 0; i < attacks.length; i++) {
-      flag = true;
-      for (let j = i + 1; j < attacks.length; j++) {
-        if (removedAttacks.includes(attacks[i].id) || (attacks[j].overwrites != null && attacks[j].overwrites.includes(attacks[i].id))) {
-          flag = false;
-          break;
-        }
-      }
-      if (flag) filteredAttacks.push(attacks[i]);
+      if (!removedAttacks.includes(attacks[i].id)) filteredAttacks.push(attacks[i]);
     }
 
     const buffedAttacks = [];

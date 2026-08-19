@@ -211,7 +211,55 @@
     {
       "path": "500",
       "name": "The Bloon Solver",
-      "cost": 19000
+      "cost": 19000,
+      "attacks" : [
+        {
+          "id" : "solver-bomb",
+          "name" : "Glue Bomb",
+          "overwrites" : [ "glue", "glue-bomb" ],
+          "properties" : {
+            "projectiles" : 2,
+            "range" : 46,
+            "cooldown" : 0.4,
+            "summonAttack" : [
+              {
+                "attackId" : "solver-splat",
+                "type" : [ "onContact" ]
+              }
+            ],
+            "embeddedAttacks" : [
+              {
+                "id" : "solver-splat",
+                "properties" : {
+                  "pierce" : 5,
+                  "blastRadius" : 13,
+                  "damageType" : "normal",
+                  "attackType" : "splat",
+                  "glue" : {
+                    "duration" : 11,
+                    "durationBlimps" : 5.5,
+                    "soak" : 3,
+                    "slowBloons" : 0.5,
+                    "slowBlimps" : 0.0,
+                    "dot" : {
+                      "name" : "corrosive glue",
+                      "properties" : {
+                        "damage" : 1,
+                        "damageType" : "normal",
+                        "tickDuration" : 0.1,
+                        "bonusDamage" : {
+                          "ceram" : 5,
+                          "moab" : 9
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        }
+      ]
     },
     {
       "path": "010",
