@@ -42,6 +42,8 @@ export class Upgrade {
     rootContainer.classList.add('properties-container-styler');
     upgradeTitle.style.color = 'var(--text-common)';
 
+    if (this.cost == null) this.cost = 0;
+
     upgradeTitle.textContent = `${this.path} - ${this.name} - $${this.cost.toLocaleString('en-US')}`;
 
     return rootContainer;

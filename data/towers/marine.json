@@ -1,0 +1,14 @@
+{
+  "id": "marine",
+  "name": "Marine",
+  "properties": {
+    "size": 1,
+    "placement": 0
+  },
+  "upgrades": [
+    {
+      "path": "000",
+      "name": "Base"
+    }
+  ]
+}

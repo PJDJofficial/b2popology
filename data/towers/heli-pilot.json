@@ -34,7 +34,15 @@
     {
       "path": "100",
       "name": "Quad Darts",
-      "cost": 600
+      "cost": 600,
+      "buffs" : [
+        {
+          "type" : "attackCount",
+          "operation" : "set",
+          "value" : 2,
+          "affectedAttacks" : [ "dart" ]
+        }
+      ]
     },
     {
       "path": "200",
@@ -44,17 +52,156 @@
     {
       "path": "300",
       "name": "Razor Rotors",
-      "cost": 1800
+      "cost": 1800,
+      "attacks" : [
+        {
+          "id" : "rotors",
+          "name" : "Rotors",
+          "properties" : {
+            "damage" : 2,
+            "pierce" : 13,
+            "range" : {
+              "value" : 35,
+              "attribute" : "aoe"
+            },
+            "cooldown" : 0.55,
+            "damageType" : "normal"
+          }
+        }
+      ]
     },
     {
       "path": "400",
       "name": "Apache Dartship",
-      "cost": 17500
+      "cost": 17500,
+      "buffs" : [
+        {
+          "type" : "cooldown",
+          "operation" : "mul",
+          "value" : 0.75,
+          "affectedAttacks" : [ "dart" ]
+        },
+        {
+          "type" : "damage",
+          "operation" : "add",
+          "value" : 4,
+          "affectedAttacks" : [ "rotors" ]
+        },
+        {
+          "type" : "pierce",
+          "operation" : "add",
+          "value" : 7,
+          "affectedAttacks" : [ "rotors" ]
+        }
+      ],
+      "attacks" : [
+        {
+          "id" : "lmg",
+          "name" : "Machine Gun",
+          "properties" : {
+            "damage" : 1,
+            "pierce" : 9,
+            "range" : 42,
+            "cooldown" : 0.05,
+            "damageType" : "sharp"
+          }
+        },
+        {
+          "id" : "rocket",
+          "name" : "Rocket",
+          "properties" : {
+            "projectiles" : 4,
+            "range" : 173,
+            "cooldown" : 1.0,
+            "summonAttack" : [
+              {
+                "attackId" : "rocket-explosion",
+                "type" : [ "onContact" ]
+              }
+            ],
+            "embeddedAttacks" : [
+              {
+                "id" : "rocket-explosion",
+                "properties" : {
+                  "damage" : 3,
+                  "bonusDamage" : {
+                    "ceram" : 3,
+                    "moab" : 3
+                  },
+                  "pierce" : 40,
+                  "blastRadius" : 25,
+                  "damageType" : "explosion",
+                  "attackType" : "explosion"
+                }
+              }
+            ]
+          }
+        }
+      ]
     },
     {
       "path": "500",
       "name": "Apache Prime",
-      "cost": 45000
+      "cost": 45000,
+      "buffs" : [
+        {
+          "type" : "damage",
+          "operation" : "add",
+          "value" : 5,
+          "affectedAttacks" : [ "dart" ]
+        },
+        {
+          "type" : "pierce",
+          "operation" : "add",
+          "value" : 20,
+          "affectedAttacks" : [ "dart"]
+        },
+        {
+          "type" : "damageType",
+          "operation" : "set",
+          "value" : "energy",
+          "affectedAttacks" : [ "dart" ]
+        },
+        {
+          "type" : "damage",
+          "operation" : "add",
+          "value" : 4,
+          "affectedAttacks" : [ "rotors" ]
+        },
+        {
+          "type" : "pierce",
+          "operation" : "add",
+          "value" : 20,
+          "affectedAttacks" : [ "rotors" ]
+        },
+        {
+          "type" : "damage",
+          "operation" : "add",
+          "value" : 4,
+          "affectedAttacks" : [ "lmg" ]
+        },
+        {
+          "type" : "pierce",
+          "operation" : "add",
+          "value" : 6,
+          "affectedAttacks" : [ "lmg" ]
+        },
+        {
+          "type" : "damageType",
+          "operation" : "set",
+          "value" : "plasma",
+          "affectedAttacks" : [ "lmg" ]
+        },
+        {
+          "type" : "bonusDamage",
+          "operation" : "add",
+          "value" : {
+            "ceram" : 12,
+            "moab" : 12
+          },
+          "affectedAttacks" : [ "rocket-explosion" ]
+        }
+      ]
     },
     {
       "path": "010",
@@ -64,37 +211,143 @@
     {
       "path": "020",
       "name": "IFR",
-      "cost": 350
+      "cost": 350,
+      "buffs" : [
+        {
+          "type" : "camo",
+          "operation" : "set",
+          "value" : true,
+          "affectedAttacks" : [ "all" ]
+        }
+      ]
     },
     {
       "path": "030",
       "name": "Downdraft",
-      "cost": 3200
+      "cost": 3200,
+      "attacks" : [
+        {
+          "id" : "downdraft",
+          "name" : "Downdraft",
+          "properties" : {
+            "pierce" : 1,
+            "range" : {
+              "value" : 32,
+              "attribute" : "aoe"
+            },
+            "cooldown" : 0.15,
+            "cantTarget" : [ "blimps" ],
+            "knockbackMin" : 32,
+            "knockbackMax" : 300
+          }
+        }
+      ]
     },
     {
       "path": "040",
       "name": "Support Chinook",
-      "cost": 8500
+      "cost": 7500,
+      "abilities" : [
+        {
+          "id" : "redeploy",
+          "name" : "Redeploy",
+          "properties" : {
+            "abilityCooldown" : 60,
+            "desc" : [ "move a tower, except for: aces, helis, farms, villages, aircraft carriers (4xx or 5xx buccaneers), and temples (4xx or 5xx supers)" ]
+          }
+        },
+        {
+          "id" : "supply-crate",
+          "name" : "Supply Crate",
+          "properties" : {
+            "abilityCooldown" : 60,
+            "initialCooldown" : 20,
+            "desc" : [ "drops $4000 cash and 15 lives" ]
+          }
+        }
+      ]
     },
     {
       "path": "050",
       "name": "Special Poperations",
-      "cost": 30000
+      "cost": 30000,
+      "abilities" : [
+        {
+          "id" : "special-supplies",
+          "name" : "Special Supplies",
+          "overwrites" : [ "supply-crate" ],
+          "properties" : {
+            "abilityCooldown" : 60,
+            "initialCooldown" : 20,
+            "desc" : [
+              "drops $8000 cash and 15 lives",
+              "activates all supply crate abilities"
+            ]
+          }
+        },
+        {
+          "id" : "spop",
+          "name" : "Special Poperations",
+          "properties" : {
+            "abilityCooldown" : 25,
+            "desc" : [ "deploy a marine subtower with a 30s lifetime" ]
+          }
+        }
+      ],
+      "subtowers" : [ "marine" ]
     },
     {
       "path": "001",
       "name": "Faster Darts",
-      "cost": 350
+      "cost": 350,
+      "buffs" : [
+        {
+          "type" : "pierce",
+          "operation" : "add",
+          "value" : 1,
+          "affectedAttacks" : [ "dart" ]
+        },
+        {
+          "type" : "pierce",
+          "operation" : "add",
+          "value" : 3,
+          "affectedAttacks" : [ "rotors" ]
+        }
+      ]
     },
     {
       "path": "002",
       "name": "Faster Firing",
-      "cost": 250
+      "cost": 250,
+      "buffs" : [
+        {
+          "type" : "cooldown",
+          "operation" : "add",
+          "value" : -0.03,
+          "affectedAttacks" : [ "rotors", "downdraft" ]
+        },
+        {
+          "type" : "cooldown",
+          "operation" : "mul",
+          "value" : 0.8,
+          "affectedAttacks" : [ "dart", "lmg", "rocket" ]
+        }
+      ]
     },
     {
       "path": "003",
       "name": "MOAB Shove",
-      "cost": 4000
+      "cost": 4000,
+      "attacks" : [
+        {
+          "id" : "shove",
+          "name" : "Shove",
+          "properties" : {
+            "impactPierce" : 1,
+            "slow" : "who knows"
+          }
+        }
+      ]
     },
     {
       "path": "004",
