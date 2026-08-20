@@ -79,6 +79,13 @@ export class Ability {
 
   buffedBy(buff) {
     const ability = this.clone();
+
+    if (ability.attacks != null) {
+      for (let i = 0 ; i < ability.attacks.length; i++) {
+        ability.attacks[i] = ability.attacks[i].buffedBy(buff);
+      }
+    }
+
     if (
       (!buff.affectedAbilities.includes('EX_' + this.id)) &&
       ((buff.affectedAbilities.includes('all')) || (buff.affectedAbilities.includes(this.id)))

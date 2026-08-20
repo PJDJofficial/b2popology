@@ -198,15 +198,18 @@ export class Tower {
   getAttacks(path) {
     const attacks = [];
     const removedAttacks = [];
+
+    // Grab all attacks from upgrades, noting overwrites and remove metadata along the way
     this.upgrades.forEach((upgrade) => {
       if (this.isChildUpgrade(path, upgrade.path)) {
         if (upgrade.metadata != null && upgrade.metadata.removeAttacks != null)
           removedAttacks.push(...upgrade.metadata.removeAttacks);
-        if (upgrade.attacks == null) return;
-        upgrade.attacks.forEach((attack) => {
-          if (attack.overwrites != null && attack.overwrites.length > 0) removedAttacks.push(...attack.overwrites);
-          attacks.push(attack);
-        });
+        if (upgrade.attacks != null) {
+          upgrade.attacks.forEach((attack) => {
+            if (attack.overwrites != null && attack.overwrites.length > 0) removedAttacks.push(...attack.overwrites);
+            attacks.push(attack);
+          });
+        }
       }
     });
 

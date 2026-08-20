@@ -160,7 +160,62 @@
     {
       "path": "050",
       "name": "M.A.D",
-      "cost": 68000
+      "cost": 68000,
+      "buffs" : [
+        {
+          "type" : "damage",
+          "operation" : "set",
+          "value" : 3,
+          "affectedAttacks" : [ "rocket" ]
+        },
+        {
+          "type" : "bonusDamage",
+          "operation" : "add",
+          "value" : {
+            "moab" : 447
+          },
+          "affectedAttacks" : [ "rocket" ]
+        },
+        {
+          "type" : "cooldown",
+          "operation" : "mul",
+          "value" : 3,
+          "affectedAttacks" : [ "rocket" ]
+        },
+        {
+          "type" : "impactPierce",
+          "operation" : "add",
+          "value" : 1,
+          "affectedAttacks" : [ "rocket" ]
+        },
+        {
+          "type" : "damage",
+          "operation" : "add",
+          "value" : 2,
+          "affectedAttacks" : [ "rocket-explosion" ]
+        },
+        {
+          "type" : "bonusDamage",
+          "operation" : "add",
+          "value" : {
+            "ceram" : 4,
+            "moab" : 55
+          },
+          "affectedAttacks" : [ "rstorm-explosion" ]
+        },
+        {
+          "type" : "pierce",
+          "operation" : "add",
+          "value" : 9,
+          "affectedAttacks" : [ "rstorm-explosion" ]
+        },
+        {
+          "type" : "blastRadius",
+          "operation" : "add",
+          "value" : 4,
+          "affectedAttacks" : [ "rstorm-explosion" ]
+        }
+      ]
     },
     {
       "path": "001",
@@ -170,12 +225,50 @@
     {
       "path": "002",
       "name": "Powerful Darts",
-      "cost": 800
+      "cost": 800,
+      "buffs" : [
+        {
+          "type" : "pierce",
+          "operation" : "add",
+          "value" : 3,
+          "affectedAttacks" : [ "dart", "rocket-explosion", "rstorm-explosion" ]
+        },
+        {
+          "type" : "pierce",
+          "operation" : "add",
+          "value" : 30,
+          "affectedAttacks" : [ "beam" ]
+        },
+        {
+          "type" : "impactPierce",
+          "operation" : "add",
+          "value" : 2,
+          "affectedAttacks" : [ "rocket" ]
+        }
+      ]
     },
     {
       "path": "003",
       "name": "Buckshot",
-      "cost": 3400
+      "cost": 3400,
+      "attacks" : [
+        {
+          "id" : "buckshot",
+          "name" : "Buckshot",
+          "overwrites" : [ "dart" ],
+          "properties" : {
+            "damage" : 4,
+            "projectiles" : [6, 23],
+            "pierce" : 6,
+            "range" : 130,
+            "cooldown" : 1.5,
+            "damageType" : "shatter",
+            "bloonSpeed" : "-300%",
+            "bloonSpeedCeramLead" : "-150%",
+            "speedModDuration" : "0.2s"
+          }
+        }
+      ]
     },
     {
       "path": "004",
