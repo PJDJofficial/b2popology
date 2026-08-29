@@ -122,6 +122,10 @@ const data = {
                             "4": {
                                 "name": "040 - Super Monkey Fan Club",
                                 "content": [
+                                    "dart attack buffed",
+                                    [
+                                        "+2d (3d)"
+                                    ],
                                     "gains fan-club ability (50s cooldown, 12s duration, battle ready)",
                                     [
                                         "transforms 10 nearest untransformed dart monkeys within 50r (up to 2-4-2) into superfans",
