@@ -510,7 +510,7 @@ const data = {
                                 "content": [
                                     "bomb buffed",
                                     [
-                                        "+3r (43r), normal damage"
+                                        normal damage"
                                     ],
                                     "explosion buffed",
                                     [
@@ -527,7 +527,7 @@ const data = {
                                 "content": [
                                     "explosion buffed",
                                     [
-                                        "+27d (30), normal type"
+                                        "+27d (30), normal type, 33.48r"
                                     ],
                                     "stun buffed",
                                     [
