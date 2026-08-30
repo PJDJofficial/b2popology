@@ -751,7 +751,7 @@ const data = {
                                     ],
                                     "crosspath",
                                     [
-                                        "420: +15p (65p)",
+                                        "420: +15p (60p)",
                                         "401: +1d (4d)",
                                         "402: +1d (5d)"
                                     ]
@@ -1384,7 +1384,7 @@ const data = {
                             "20r",
                             "bullet attack",
                             [
-                                "2d, 1i, ∞r, 1.45s, sharp type"
+                                "2d, 1i, ∞r, 1.35s, sharp type"
                             ]
                         ],
                         "top": {
@@ -2632,13 +2632,13 @@ const data = {
                                     [
                                         "on expire: stun-explosion",
                                         [
-                                            "45p, 19r blast",
+                                            "45p, 19.6r blast",
                                             "cannot affect black, zebra, or blimps",
                                             "applies stun status: 0.4s duration"
                                         ],
                                         "on expire: shockwave",
                                         [
-                                            "1d, 45p, 57r blast, explosion type",
+                                            "1d, 45p, 58.8r blast, explosion type",
                                             "additionally ignores anything within half of the blast radius",
                                             "note: blimps are large enough that they won't fully fit in this inner radius and so get hit"
                                         ]
@@ -2654,15 +2654,15 @@ const data = {
                                 "content": [
                                     "explosion buffed",
                                     [
-                                        "+5d (7d), +55p (100p), +39.2r (78.4r), normal type"
+                                        "+5d (7d), +55p (100p), +100%r (78.4r), normal type"
                                     ],
                                     "stun-explosion buffed",
                                     [
-                                        "+55p (100p), +10r (29r)"
+                                        "+55p (100p), +100%r (39.2r)"
                                     ],
                                     "shockwave buffed",
                                     [
-                                        "+55p (100p), +30r (87r), normal type"
+                                        "+55p (100p), +100%r (117.6r), normal type"
                                     ],
                                     "crosspath",
                                     [
@@ -2679,11 +2679,11 @@ const data = {
                                     ],
                                     "stun-explosion buffed",
                                     [
-                                        "+115p (200p), +8r (37r), additionally stuns blimps for 0.35s"
+                                        "+115p (200p), +80%r (70.56r), additionally stuns blimps for 0.35s"
                                     ],
                                     "shockwave buffed",
                                     [
-                                        "+115p (200p), +20cd (21cd), +24r (111r), normal type"
+                                        "+115p (200p), +20cd (21cd), +80%r (211.68r), normal type"
                                     ],
                                     "crosspath",
                                     [
