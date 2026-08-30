@@ -1531,7 +1531,7 @@ const data = {
                                 "content": [
                                     "bullet buffed",
                                     [
-                                        "40%s (0.58s)",
+                                        "40%s (0.54s)",
                                     ],
                                     "gains elite buff",
                                     [
@@ -1553,7 +1553,7 @@ const data = {
                                 "content": [
                                     "bullet buffed",
                                     [
-                                        "70%s (1.015s)"
+                                        "70%s (0.945s)"
                                     ]
                                 ]
                             },
@@ -1562,7 +1562,7 @@ const data = {
                                 "content": [
                                     "bullet buffed",
                                     [
-                                        "70%s (0.7105s)"
+                                        "70%s (0.6615s)"
                                     ]
                                 ]
                             },
@@ -1571,7 +1571,7 @@ const data = {
                                 "content": [
                                     "bullet buffed",
                                     [
-                                        "33.33%s (0.2368s)"
+                                        "33.33%s (0.2205s)"
                                     ]
                                 ]
                             },
@@ -1580,7 +1580,7 @@ const data = {
                                 "content": [
                                     "bullet buffed",
                                     [
-                                        "50%s (0.1184s), +2md (4md), normal type",
+                                        "50%s (0.11025s), +2md (4md), normal type",
                                     ],
                                     "crosspath",
                                     [
@@ -1594,7 +1594,7 @@ const data = {
                                 "content": [
                                     "bullet buffed",
                                     [
-                                        "50%s (0.0592s)",
+                                        "50%s (0.055s)",
                                         "additionally shoots x% faster, where x% is how far along the track the furthest forward bloon is"
                                     ],
                                     "gains retaliation ability (10s cooldown, 7s duration, passive: triggered bloons coming close to the exit)",
