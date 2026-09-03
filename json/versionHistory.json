@@ -1306,7 +1306,7 @@
           ]
         },
         "16": {
-          "date": "2027/8/30",
+          "date": "2026/8/30",
           "content": [
             "Added Battles 2 4.11 through 4.13 OTA 1 changes",
             "Corrected x2x Dart Monkey's Attack Cooldown Multiplier (PJDJ)",
@@ -1338,7 +1338,9 @@
             "Corrected Striker Jones' Level 4 and Level 18 Explosive Expert Buffs (PJDJ)",
             "Corrected Biker Bones' Level 18 Flying Expert Buffs (PJDJ)",
             "Corrected Biker Bones' Level 19 Attack Cooldown (PJDJ)",
-            "Corrected Adora Level 10's Ball of Light Subattacks [split it into the terminus and beam attack] (PJDJ)"
+            "Corrected Adora Level 10's Ball of Light Subattacks [split it into the terminus and beam attack] (PJDJ)",
+            "Corrected Obyn's Ward Totem MOAB Stall (PJDJ)",
+            "Added Beetienne's Level 3 bugged interactions with level 5 (PJDJ)"
           ]
         }
       }
